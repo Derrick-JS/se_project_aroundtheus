@@ -1,3 +1,19 @@
+@font-face {
+    font-family: "Inter Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../vendor/fonts/Inter-Regular.woff2) format("woff2");
+  }
+  
+  @font-face {
+    font-family: "Inter Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../vendor/fonts/Inter-Medium.woff2") format("woff2");
+  }
+
 .profile{
     display: flex;
     padding-top: 40px;
@@ -14,7 +30,7 @@
 
 .profile__info{
     display: grid;
-    grid-template-columns: minmax(auto, 373px) auto;
+    grid-template-columns: auto auto;
     align-items: baseline;
     grid-gap: 20px 17px;
     grid-template-areas: 
@@ -24,8 +40,8 @@
 
 
 .profile__info_header{
+    font-family: "Inter Medium";
     margin: 0 0 0 0;
-    font-weight: 500;
     font-size: 42px;
     line-height: 48px;
     max-width: 415px;
@@ -37,9 +53,9 @@
     display: flex;
 }
 
-.profile__info_desciption{
+.profile__info_description{
+    font-family: "Inter Regular";
     margin: 0;
-    font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     max-width: 415px;
@@ -78,4 +94,44 @@
 .profile__add-button:hover{
     opacity: 0.7;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+    .profile{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile__info{
+        column-gap: 0;
+        max-width: 282px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .profile__info_desciption{
+        text-align: center;
+        font-size: 14px;
+        margin-right: 30px;
+        line-height: 17px;
+        margin: 0;
+    }
+
+    .profile__title{
+        line-height: normal;
+        font-size: 22px;
+        margin: 0 0 0 30px;
+    }
+
+    .profile__add-button{
+        margin: 35px 0 0;
+        width: 282px;
+    }
+
+    .profile__edit-button{
+        height: 18px;
+        width: 18px;
+        margin: 0;
+    }
 }

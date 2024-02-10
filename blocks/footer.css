@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "Inter Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../vendor/fonts/Inter-Regular.woff2") format("woff2");
+  }  
+
+.footer{
+font-family: "Inter Regular";
+max-width: 318px;
+height: 18px;
+}
+
+.footer__copyright{
+    font-family: "Inter Regular";
+    font-size: 18px;
+    line-height: 1.2;
+    color: #545454;
+}
