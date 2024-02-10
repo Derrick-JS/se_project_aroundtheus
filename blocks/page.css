@@ -1,5 +1,7 @@
 .page{
     background-color: black;
+    margin: 0;
+    padding: 0;
 }   
 
 .page__content{
@@ -8,7 +10,30 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 0 20px;
     max-width: 880px;
     margin: 0 auto;
+}
+
+.profile__section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 200px 0 200px;
+}
+
+@media screen and (max-width: 775px) {
+    .page__content {
+    }
+
+    .page__section {
+    }
+    
+}
+
+@media screen and (max-width: 320px) {
+    .page__content {
+    }
+
+    .page__section {
+    }
 }
