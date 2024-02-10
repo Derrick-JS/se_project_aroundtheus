@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    padding: 45px 0px 40px 0px;
+    padding: 40px 0px 0px 0px;
     border: 1px solid rgba(84, 84, 84, 0.2);
 }
 
@@ -12,9 +12,11 @@
     margin: 0 auto 0 0;
 }
 
-@media screen and (max-width:620px){
+@media screen and (max-width:775px){
     .header{
-        padding: 28px 0px 32px;
+        padding: 28px 19px 42px;
+        max-width: 320px;
+        max-height: 56px;
     }
     
     .header__logo{
