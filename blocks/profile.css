@@ -96,7 +96,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 775px){
     .profile{
         flex-direction: column;
         align-items: center;
