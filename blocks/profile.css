@@ -39,7 +39,7 @@
 }
 
 
-.profile__info_header{
+.profile__title{
     font-family: "Inter Medium";
     margin: 0 0 0 0;
     font-size: 42px;
@@ -53,7 +53,7 @@
     display: flex;
 }
 
-.profile__info_description{
+.profile__description{
     font-family: "Inter Regular";
     margin: 0;
     font-size: 18px;
@@ -134,4 +134,13 @@
         width: 18px;
         margin: 0;
     }
+}
+
+@media  and (max-width: 320px){
+    .profile__info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
 }
