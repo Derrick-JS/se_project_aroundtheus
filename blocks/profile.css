@@ -16,7 +16,7 @@
 .profile__info{
     display: grid;
     grid-template-columns: auto auto;
-    align-items: baseline;
+    align-items: center;
     grid-gap: 20px 17px;
     grid-template-areas: 
     "title button"
