@@ -9,7 +9,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin: 0;
+    margin: 0 30px 0 0;
 }
 
 
@@ -96,11 +96,15 @@
     .profile {
         display: flex;
         flex-direction: column;
-        padding: 42px 19px 36px 19px;
+        padding: 42px 19px 0 19px;
         }
 
     .profile__image {
         margin: 0 80px 30px 82px;
+    }
+    .profile__info {
+        align-content: inherit;
+        justify-content: center;
     }
 
     .profile__title {
