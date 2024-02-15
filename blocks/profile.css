@@ -1,11 +1,11 @@
 
-.profile{
+.profile {
     display: flex;
     padding-top: 40px;
     align-items: center;
 }
 
-.profile__image{
+.profile__image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -13,7 +13,7 @@
 }
 
 
-.profile__info{
+.profile__info {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
@@ -23,16 +23,7 @@
     "description description";
 }
 
-.profile__wrapper {
-    display: flex;  
-    flex-direction: row ;
-    margin: 0 15px 14px 0;
-    gap: 10px;
-    width: 100%;    
-}
-
-
-.profile__title{
+.profile__title {
     font-family: "Inter", Arial, sans-serif;
     font-weight: 500;
     margin: 0;
@@ -45,7 +36,7 @@
     overflow: hidden;
 }
 
-.profile__description{
+.profile__description {
     font-family: "Inter", Arial, sans-serif;
     font-weight: 400;
     margin: 0;
@@ -59,7 +50,7 @@
     overflow: hidden;
 }
 
-.profile__edit-button{
+.profile__edit-button {
     height: 24px;
     width: 24px;
     grid-area: button;
@@ -70,12 +61,12 @@
     align-items: center;
 }
 
-.profile__edit-button:hover{
+.profile__edit-button:hover {
     opacity: 0.6;
     cursor: pointer;
 }
 
-.profile__add-button{
+.profile__add-button {
     background: transparent url(../images/add-button.svg) no-repeat center;
     width: 150px;
     height: 50px;
@@ -86,7 +77,7 @@
     border-radius: 2px;
 }
 
-.profile__add-button:hover{
+.profile__add-button:hover {
     opacity: 0.6;
     cursor: pointer;
 }
@@ -106,27 +97,17 @@
         display: flex;
         flex-direction: column;
         padding: 42px 19px 36px 19px;
-        font-display: column;
-    }
+        }
 
     .profile__image {
-        width: 120px;
-        height: 120px;  
         margin: 0 80px 30px 82px;
     }
 
     .profile__title {
         line-height: normal;
         font-size: 22px;
-        margin: 0;
+        margin: 0 10px 0 0;
     }
-
-    .profile__info {
-        flex-direction: column;
-        align-items: center;
-        grid-gap: 0;
-    }
-
 
     .profile__edit-button {
         width: 18px;
