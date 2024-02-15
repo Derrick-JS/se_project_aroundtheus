@@ -3,7 +3,7 @@
   font-weight: 400;
   max-width: 318px;
   margin: 0;
-  padding: 0;
+  padding: 67px 0 60px 0;
 }
 
 .footer__copyright {
@@ -13,5 +13,5 @@
   line-height: 1.2;
   color: #545454;
   margin: 0;
-  padding: 67px 0 0 0;
+ padding: 0;
 }
