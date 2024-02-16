@@ -25,16 +25,10 @@
   .page__content {
     max-width: 775px;
   }
-
-  .page__section {
-  }
 }
 
 @media screen and (max-width: 320px) {
   .page__content {
     max-width: 320px;
-  }
-
-  .page__section {
   }
 }
