@@ -1,41 +1,40 @@
 .page {
-    background-color: black;
-    margin: 0;
-    padding: 0;
-}   
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
 
-.page__content { 
-    font-family: "Inter", sans-serif;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    max-width: 880px;
-    margin: 0 auto;
+.page__content {
+  font-family: "Inter", sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 880px;
+  margin: 0 auto;
 }
 
 .profile__section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 200px 0 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 200px 0 200px;
 }
 
 @media screen and (max-width: 775px) {
-    .page__content {
-        max-width: 775px;
-    }
+  .page__content {
+    max-width: 775px;
+  }
 
-    .page__section {
-    }
-    
+  .page__section {
+  }
 }
 
 @media screen and (max-width: 320px) {
-    .page__content {
-        max-width: 320px;
-    }
+  .page__content {
+    max-width: 320px;
+  }
 
-    .page__section {
-    }
+  .page__section {
+  }
 }
