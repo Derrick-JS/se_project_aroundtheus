@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 320px) {
   .profile {
     flex-direction: column;
     padding: 42px 19px 0 19px;
@@ -102,6 +102,7 @@
     line-height: normal;
     font-size: 22px;
     margin: 0;
+    max-width: calc(100vh - 124px);
   }
 
   .profile__edit-button {
@@ -116,6 +117,7 @@
     text-align: center;
     font-size: 14px;
     line-height: 17px;
+    max-width: calc(100vh - 124px);
   }
 
   .profile__add-button {
