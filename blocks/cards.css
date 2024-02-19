@@ -14,7 +14,7 @@
   grid-template-columns: repeat(auto-fill, 282px);
 }
 
-@media screen and (min-width: 680px) {
+@media screen and (max-width: 680px) {
   .cards__list {
     padding: 36px 0 48px 0; 
  }  
