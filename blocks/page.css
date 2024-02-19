@@ -21,9 +21,9 @@
   padding: 0 200px 0 200px;
 }
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 680px) {
   .page__content {
-    max-width: 775px;
+    max-width: 680px;
   }
 }
 
