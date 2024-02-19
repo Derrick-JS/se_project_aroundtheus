@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 680px) {
   .profile {
     flex-direction: column;
     padding: 42px 19px 0 19px;
@@ -95,7 +95,7 @@
     display: flex;
     flex-wrap: wrap;
     grid-gap: 14px 10px;
-    
+    max-width: calc(100vh - 100px);
   }
 
   .profile__title {
