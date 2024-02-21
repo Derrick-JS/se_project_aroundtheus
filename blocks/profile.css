@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 680`px) 
+@media screen and (max-width: 680px) 
 /*changed from 320px*/
 {
   .profile {
@@ -95,7 +95,7 @@
   .profile__info {
     justify-content: center;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;`
     grid-gap: 14px 10px;
     max-width: 282px;
     /* max-width: calc(100vh - 100px);*/
