@@ -41,3 +41,8 @@ Percentage-based Sizing: Used percentage-based sizing for elements to create lay
 calc() Function: Leveraged the calc() function to perform calculations within CSS properties, enabling dynamic sizing and positioning of elements based on specific criteria
 
 
+Github Pages Webpage
+
+derrick-js.github.io
+
+
