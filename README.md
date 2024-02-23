@@ -59,7 +59,7 @@ Check out the video linked below for an insightful walkthrough of the features a
 
 # Github Pages Webpage
 
-[My Github Page](https://derrick-js.github.io)
+[My Github Page](https://derrick-js.github.io/se_project_aroundtheus)
 
 
 
