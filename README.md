@@ -51,7 +51,7 @@ At the bottom of the page is a copyright notice, ensuring due recognition and sa
 
 # Video Overview
 
-Linked below is a video descr
+Check out the video linked below for an insightful walkthrough of the features and technologies incorporated into this project. I delve into the intricate details of card formatting, the adaptability of the page design, and the use of semantic tags and BEM methodology. Additionally, I discuss the functionality and structure of the CSS files, integration of custom fonts, and highlight the challenges encountered along the way. Dive in to gain a deeper understanding of the project's development journey.
 
 [![Sample YouTube Video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
