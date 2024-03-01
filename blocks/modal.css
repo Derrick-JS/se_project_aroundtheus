@@ -1,0 +1,81 @@
+.modal {
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__container {
+    padding: 36px;
+    position: relative  ;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 1);
+    height: 330px;
+    width: 430px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.modal__button-close {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    top: -45px;
+    right: -45px;
+    width: 40px;
+    height: 40px;
+    background-image:  url(../images/Close-Icon.svg) ;
+    background-repeat: no-repeat;  
+    background-size: contain;
+    cursor: pointer;
+}
+
+.modal__heading {
+    margin: 0;
+    padding: 0 0 55px 0;
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.modal__input {
+    margin: 0;
+    padding: 0;
+    border: none;   
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+    padding-bottom: 12.5px;
+    color: black;
+}
+
+.modal__button-save {
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 15px 125px 15px 125px;
+    margin: 0;
+    border: none;
+    width: 100%;
+    line-height: 18px;
+    margin-top: 50px;
+    background-color: black;
+    color: white;
+}
