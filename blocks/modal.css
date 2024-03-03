@@ -1,4 +1,8 @@
 .modal {
+    display: none;
+}
+
+.modal__open {
     position: fixed;
     display: flex;
     top: 0;
