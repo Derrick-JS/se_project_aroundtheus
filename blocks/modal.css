@@ -2,7 +2,7 @@
     display: none;
 }
 
-.modal__open {
+.modal_opened {
     position: fixed;
     display: flex;
     top: 0;
@@ -87,7 +87,7 @@
 }
 
 @media screen and (max-width: 320px){
-    .modal__open {
+    .modal_opened {
         width: 100%;
     }
 
@@ -104,8 +104,8 @@
     .modal__button-save {
         display: block;
         height: 46px;
-        width: calc(100% - 50px);
         margin-top: 15px;
+        padding:15px 100px 15px 100px;
     }
 
     .modal__button-close {

@@ -43,7 +43,7 @@ let cardTemplate = document.querySelector(".card__template");
 let cardsList = document.querySelector(".cards__list");
 
 function handleClosePopup() {
-  modal.classList.remove("modal__open");
+  modal.classList.remove("modal_opened");
 }
 
 function handleModalFormSubmit(event){
@@ -60,15 +60,19 @@ function getCardElement(data) {
   //We then use the cloneNode method to create a copy of the card element
   let cardImage = cardElement.querySelector(".card__image");
   cardImage.src = data.link;
+  //links the image to the data link
   let cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = data.name;
+  // links the title to the data name
+  data.name = data.alt;
+  //links the alt to the data name (which is the same as the title)
   return cardElement;
 }
 
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  modal.classList.add("modal__open");
+  modal.classList.add("modal_opened");
 });
 
 modalCloseButton.addEventListener("click", handleClosePopup);
