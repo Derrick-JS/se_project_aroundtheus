@@ -30,17 +30,17 @@ Alternatively, we could use new JS classes for each element
 Example:
 let modal = document.querySelector(".JS__modal");
 */
-let modal = document.querySelector(".modal");
+const modal = document.querySelector(".modal");
 /* should future-proof by changing from modal in cases where we have multiple modals */
-let profileEditButton = document.querySelector(".profile__edit-button");
-let modalCloseButton = document.querySelector(".modal__button-close");
-let profileTitle = document.querySelector(".profile__title"); 
-let profileDescription = document.querySelector(".profile__description");
-let profileTitleInput = document.querySelector("#profile-title-input");
-let profileDescriptionInput = document.querySelector("#profile-description-input");
-let modalForm = document.querySelector(".modal__form");
-let cardTemplate = document.querySelector(".card__template");
-let cardsList = document.querySelector(".cards__list");
+const profileEditButton = document.querySelector(".profile__edit-button");
+const modalCloseButton = document.querySelector(".modal__button-close");
+const profileTitle = document.querySelector(".profile__title"); 
+const profileDescription = document.querySelector(".profile__description");
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileDescriptionInput = document.querySelector("#profile-description-input");
+const modalForm = document.querySelector(".modal__form");
+const cardTemplate = document.querySelector(".card-template");
+const cardsList = document.querySelector(".cards__list");
 
 function handleClosePopup() {
   modal.classList.remove("modal_opened");
