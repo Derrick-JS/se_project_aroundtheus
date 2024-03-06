@@ -42,26 +42,27 @@
       <div class="modal__container">
         <button class="modal__button-close"></button>
         <h2 class="modal__heading">Edit profile</h2>
-        <form class="modal__form" name="delete-form" novalidate>
+        <form class="modal__form" name="profile-form" novalidate>
           <input
             type="text"
             class="modal__input"
             name="title"
             id="profile-title-input"
-            placeholder="Jacques-Cousteau"
+            placeholder="Enter your name"
           />
           <input
             type="text"
             class="modal__input"
             name="description"
             id="profile-description-input"
-            placeholder="Explorer"
+            placeholder="Enter your description"
           />
           <button class="modal__button-save" type="submit">Save</button>
         </form>
       </div>
     </div>
-    <template class="card__template">
+    <template class="card-template">
+<!--  classified as card-template and not card__template because it is not a child of card block  -->
       <li class="card">
         <img src="" alt="" class="card__image" />
         <div class="card__description">
