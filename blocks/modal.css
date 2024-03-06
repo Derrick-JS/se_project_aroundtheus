@@ -53,6 +53,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    justify-content: center;
 }
 
 .modal__input {
@@ -82,4 +83,33 @@
     margin-top: 50px;
     background-color: black;
     color: white;
+    justify-content: center;
+}
+
+@media screen and (max-width: 320px){
+    .modal__open {
+        width: 100%;
+    }
+
+    .modal__container {
+        padding: 25px;
+        height: 322px;
+        width: calc(100% - 88px);
+    }
+
+    .modal__heading {
+        padding-bottom: 75px;
+    }
+
+    .modal__button-save {
+        display: block;
+        height: 46px;
+        width: calc(100% - 50px);
+        margin-top: 15px;
+    }
+
+    .modal__button-close {
+        top: -55px;
+        right: 0px;
+    }
 }
