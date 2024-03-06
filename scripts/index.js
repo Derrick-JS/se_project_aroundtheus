@@ -39,21 +39,30 @@ let profileDescription = document.querySelector(".profile__description");
 let profileTitleInput = document.querySelector("#profile-title-input");
 let profileDescriptionInput = document.querySelector("#profile-description-input");
 let modalForm = document.querySelector(".modal__form");
-let cardTemplate = document.querySelector(".card__template").content.firstChildElement
+let cardTemplate = document.querySelector(".card__template");
 let cardsList = document.querySelector(".cards__list");
 
-function closePopup() {
+function handleClosePopup() {
   modal.classList.remove("modal__open");
 }
 
+function handleModalFormSubmit(event){
+  event.preventDefault();
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  handleClosePopup();
+}
+
 function getCardElement(data) {
-  let cardElement = cardTemplate.cloneNode(true);
-  let cardImage = document.querySelector(".card__image");
+  let cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
+  //we need to work with the content property of the template itself and not the variable
+  //So we use querySelector to find the card element within the template content
+  //We then use the cloneNode method to create a copy of the card element
+  let cardImage = cardElement.querySelector(".card__image");
   cardImage.src = data.link;
-  let cardTitle = document.querySelector(".card__title");
+  let cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = data.name;
   return cardElement;
-  
 }
 
 profileEditButton.addEventListener("click", function () {
@@ -62,23 +71,15 @@ profileEditButton.addEventListener("click", function () {
   modal.classList.add("modal__open");
 });
 
-modalCloseButton.addEventListener("click", function () {
-  closePopup();
-});
+modalCloseButton.addEventListener("click", handleClosePopup);
+// We're listening for modalCloseButton being clicked and then we're calling closePopup()
 
-modalForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closePopup();
-});
+modalForm.addEventListener("submit", handleModalFormSubmit);
 //We're listening for a submit event on the form, not a click because there are other ways to submit a form
 //therefore, we should use the submit event to ensure we capture all cases (failsafe)
 
-for (let i = 0; i < initialCards.length; i++) 
-{
-  let cardElement = getCardElement(data[i]);
+initialCards.forEach(data => {
+  let cardElement = getCardElement(data);
   cardsList.prepend(cardElement);
-}
-//.forEach would be more efficient than a for loop, but we haven't learned about .forEach yet
-// i<initialCards.length is more efficient than i<6 because it will work for any number of cards
+})
+//We're using forEach to iterate over the initialCards array and for each element, we're calling getCardElement to create a new card element and then we're prepending it to the cardsList
