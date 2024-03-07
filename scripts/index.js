@@ -42,6 +42,7 @@ const modalForm = document.querySelector(".modal__form");
 const cardTemplate = document.querySelector(".card-template");
 const cardsList = document.querySelector(".cards__list");
 
+
 function handleClosePopup() {
   modal.classList.remove("modal_opened");
 }
@@ -61,10 +62,13 @@ function getCardElement(data) {
   let cardImage = cardElement.querySelector(".card__image");
   cardImage.src = data.link;
   //links the image to the data link
+  cardImage.alt = "Picture of " + data.name;
+  //links the alt to the data name (which is the same as the title)
+  //you link it to cardImage.alt and not data.alt because data.alt doesn't exist
+  // you can only link [array]
   let cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = data.name;
   // links the title to the data name
-  data.name = data.alt;
   //links the alt to the data name (which is the same as the title)
   return cardElement;
 }
