@@ -52,7 +52,6 @@
 .modal__form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
     justify-content: center;
 }
 
@@ -70,6 +69,14 @@
     color: black;
 }
 
+.modal__input:first-child {
+    margin-bottom: 30px;
+}
+
+.modal__input:nth-child(2) {
+    margin-bottom: 50px;
+}
+
 .modal__button-save {
     font-family: "Inter", Arial, sans-serif;
     font-weight: 400;
@@ -80,7 +87,6 @@
     border: none;
     width: 100%;
     line-height: 18px;
-    margin-top: 50px;
     background-color: black;
     color: white;
     justify-content: center;
@@ -93,7 +99,7 @@
 
     .modal__container {
         padding: 25px;
-        height: 322px;
+        height: 272px;
         width: calc(100% - 88px);
     }
 
@@ -112,10 +118,22 @@
         line-height: 17px;
     }
 
+    .modal__input:first-child {
+        margin-bottom: 30px;
+    }
+
+    .modal__input:nth-child(2) {
+        margin-bottom: 45px;
+    }
+
     .modal__button-save {
+        font-family: "Inter", Arial, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
         display: block;
         height: 46px;
-        margin-top: 15px;
+        margin: 0;
         padding:15px 100px 15px 100px;
     }
 
