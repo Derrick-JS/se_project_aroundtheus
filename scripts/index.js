@@ -30,8 +30,7 @@ Alternatively, we could use new JS classes for each element
 Example:
 let modal = document.querySelector(".JS__modal");
 */
-const modal = document.querySelector(".modal");
-/* should future-proof by changing from modal in cases where we have multiple modals */
+const editProfileModal = document.querySelector("#profile__edit-modal");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const modalCloseButton = document.querySelector(".modal__button-close");
 const profileTitle = document.querySelector(".profile__title"); 
@@ -44,7 +43,7 @@ const cardsList = document.querySelector(".cards__list");
 
 
 function handleClosePopup() {
-  modal.classList.remove("modal_opened");
+  editProfileModal.classList.remove("modal_opened");
 }
 
 function handleModalFormSubmit(event){
@@ -76,7 +75,7 @@ function getCardElement(data) {
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  modal.classList.add("modal_opened");
+  editProfileModal.classList.add("modal_opened");
 });
 
 modalCloseButton.addEventListener("click", handleClosePopup);

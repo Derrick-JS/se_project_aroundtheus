@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- boilerplate -->
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,8 +7,10 @@
     <title>Around the U.S.</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
+<!-- page opener -->
   <body class="page">
     <div class="page__content">
+<!-- header -->
       <header class="header page__section">
         <img
           src="./images/logo.svg"
@@ -15,6 +18,7 @@
           class="header__logo"
         />
       </header>
+<!-- main content -->
       <main class="content">
         <section class="profile page__section">
           <img
@@ -34,12 +38,15 @@
           </ul>
         </section>
       </main>
+<!-- footer -->
       <footer class="footer page__section">
         <p class="footer__copyright">© 2024 Derrick Sanchez</p>
       </footer>
     </div>
-    <div class="modal">
-      <div class="modal__container">
+<!--  edit profile modal  -->
+<!-- doesnt show up - display none -->
+<div class="modal" id="profile__edit-modal">
+  <div class="modal__container">
         <button class="modal__button-close"></button>
         <h2 class="modal__heading">Edit profile</h2>
         <form class="modal__form" name="profile-form" novalidate>
@@ -61,6 +68,32 @@
         </form>
       </div>
     </div>
+<!--  add card modal  -->
+<!-- doesnt show up - display none -->
+    <div class="modal" >
+      <div class="modal__container">
+        <button class="modal__button-close"></button>
+        <h2 class="modal__heading">New place</h2>
+        <form class="modal__form" name="card-form" novalidate>
+          <input
+            type="text"
+            class="modal__input"
+            name="name"
+            id="card-title-input"
+            placeholder="Title"
+          />
+          <input
+            type="url"
+            class="modal__input"
+            name="link"
+            id="card-image-input"
+            placeholder="Image link"
+          />
+          <button class="modal__button-save" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+<!--  card template  -->  
     <template class="card-template">
 <!--  classified as card-template and not card__template because it is not a child of card block  -->
       <li class="card">
