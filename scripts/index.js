@@ -70,10 +70,17 @@ function handleProfileFormSubmit(event) {
 function getCardElement(data) {
   let cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
   let cardImage = cardElement.querySelector(".card__image");
+  let cardTitle = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+
   cardImage.src = data.link;
   cardImage.alt = "Picture of " + data.name;
-  let cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = data.name;
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
   return cardElement;
 }
 
