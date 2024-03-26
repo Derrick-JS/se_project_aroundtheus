@@ -25,22 +25,29 @@ const initialCards = [
   },
 ];
 
-/* Consider converting HTML classes to JS variables
-Alternatively, we could use new JS classes for each element
-Example:
-let modal = document.querySelector(".JS__modal");
-*/
+
 const editProfileModal = document.querySelector("#profile__edit-modal");
+const addCardModal = document.querySelector("#add-card-modal");
 const profileEditButton = document.querySelector(".profile__edit-button");
-const modalCloseButton = document.querySelector(".modal__button-close");
+const profileModalCloseButton = editProfileModal.querySelector(".modal__button-close");
+const addNewCardButton = document.querySelector(".profile__add-button");
+const addCardModalCloseButton = addCardModal.querySelector(".modal__button-close");
 const profileTitle = document.querySelector(".profile__title"); 
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
-const modalForm = document.querySelector(".modal__form");
+const editProfileForm = document.querySelector("#profile-form");
 const cardTemplate = document.querySelector(".card-template");
 const cardsList = document.querySelector(".cards__list");
 
+
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+}
 
 function handleClosePopup() {
   editProfileModal.classList.remove("modal_opened");
@@ -53,40 +60,34 @@ function handleModalFormSubmit(event){
   handleClosePopup();
 }
 
+function handleProfileFormSubmit(event) {
+  event.preventDefault();
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  handleClosePopup();
+}
+
 function getCardElement(data) {
   let cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
-  //we need to work with the content property of the template itself and not the variable
-  //So we use querySelector to find the card element within the template content
-  //We then use the cloneNode method to create a copy of the card element
   let cardImage = cardElement.querySelector(".card__image");
   cardImage.src = data.link;
-  //links the image to the data link
   cardImage.alt = "Picture of " + data.name;
-  //links the alt to the data name (which is the same as the title)
-  //you link it to cardImage.alt and not data.alt because data.alt doesn't exist
-  // you can only link [array]
   let cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = data.name;
-  // links the title to the data name
-  //links the alt to the data name (which is the same as the title)
   return cardElement;
 }
 
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  editProfileModal.classList.add("modal_opened");
+  openModal(editProfileModal);
 });
-
-modalCloseButton.addEventListener("click", handleClosePopup);
-// We're listening for modalCloseButton being clicked and then we're calling closePopup()
-
-modalForm.addEventListener("submit", handleModalFormSubmit);
-//We're listening for a submit event on the form, not a click because there are other ways to submit a form
-//therefore, we should use the submit event to ensure we capture all cases (failsafe)
+profileModalCloseButton.addEventListener("click", () => closeModal(editProfileModal));
+addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addCardModalCloseButton.addEventListener("click", () => closeModal(addCardModal));
+editProfileForm.addEventListener("submit", handleModalFormSubmit);
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
 initialCards.forEach(data => {
-  let cardElement = getCardElement(data);
-  cardsList.prepend(cardElement);
-})
-//We're using forEach to iterate over the initialCards array and for each element, we're calling getCardElement to create a new card element and then we're prepending it to the cardsList
+  cardsList.prepend(getCardElement(data));
+});
