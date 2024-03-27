@@ -47,6 +47,11 @@ const cardURLInput = addCardForm.querySelector("#card-image-input");
 // Card Element
 const nameInput = editProfileForm.querySelector("#profile-title-input");
 const jobInput = editProfileForm.querySelector("#profile-description-input");
+// Card Image Preview Modal
+const imagePreviewModal = document.querySelector("#image__preview-modal");
+const imagePreviewImage = imagePreviewModal.querySelector(".modal__image");
+const imageName = imagePreviewModal.querySelector("#image__preview_name");
+const imagePreviewCloseButton = imagePreviewModal.querySelector(".modal__button-close");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -54,11 +59,6 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-}
-
-function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
 }
 
 function handleProfileFormSubmit(event) {
@@ -73,10 +73,10 @@ function handleAddCardFormSubmit(event){
    const name = cardTitleInput.value;
    const link = cardURLInput.value;
    renderCard({name, link}, cardsList);
-//  cardsList.prepend(cardElement);
   closeModal(addCardModal);
 };
 
+// Generate Elements of the Cards
 function getCardElement(data) {
   let cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
   let cardImage = cardElement.querySelector(".card__image");
@@ -99,32 +99,40 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function openImagePreviewModal(imageUrl, name) {
-  imagePreviewImage.src = imageUrl;
-  imagePreviewImage.alt = name;
-  imageName.textContent = name;
-  openPopup(imagePreviewModal);
+// Uses Card Elements to Render Cards
+function renderCard(cardData, wrapper) {
+  const cardElement = getCardElement(cardData);
+  wrapper.prepend(cardElement);
 }
 
-function closeImagePreviewModal() {
-  closeModal(imagePreviewModal);
+
+function handleCardImageClick(event) {
+  if (event.target.classList.contains("card__image")) {
+    const cardImage = event.target;
+    const cardTitle = cardImage.closest(".card").querySelector(".card__title");
+    imagePreviewImage.src = cardImage.src;
+    imageName.textContent = cardTitle.textContent;
+    openModal(imagePreviewModal);
+  }
 }
 
-function handleImagePreviewClick(imageUrl, name) {
-  openImagePreviewModal(imageUrl, name);
-}
-
+// Profile Listeners
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(editProfileModal);
 });
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 profileModalCloseButton.addEventListener("click", () => closeModal(editProfileModal));
+// Add Card Listeners
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () => closeModal(addCardModal));
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
+// Image Preview Listeners
+cardsList.addEventListener("click", handleCardImageClick);
+imagePreviewCloseButton.addEventListener("click", () => closeModal(imagePreviewModal));
 
+// Generation of Cards from RenderCard Function that uses Card Elements
 initialCards.forEach(cardData => {
   renderCard(cardData, cardsList);
 });
