@@ -68,20 +68,12 @@ function handleProfileFormSubmit(event) {
   closeModal(editProfileModal);
 }
 
-function handleAddCardFormSubmit(event){
-  event.preventDefault();
-   const name = cardTitleInput.value;
-   const link = cardURLInput.value;
-   renderCard({name, link}, cardsList);
-  cardsList.prepend(cardElement);
-  closeModal(addCardModal);
-};
-
 function getCardElement(data) {
   let cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
   let cardImage = cardElement.querySelector(".card__image");
   let cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
   cardImage.src = data.link;
   cardImage.alt = "Picture of " + data.name;
@@ -90,9 +82,22 @@ function getCardElement(data) {
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
+  
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   return cardElement;
 }
+
+function handleAddCardFormSubmit(event){
+  event.preventDefault();
+   const name = cardTitleInput.value;
+   const link = cardURLInput.value;
+   renderCard({name, link}, cardsList);
+//  cardsList.prepend(cardElement);
+  closeModal(addCardModal);
+};
 
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;

@@ -1,5 +1,5 @@
 <!-- boilerplate -->
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,10 +7,10 @@
     <title>Around the U.S.</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-<!-- page opener -->
+  <!-- page opener -->
   <body class="page">
     <div class="page__content">
-<!-- header -->
+      <!-- header -->
       <header class="header page__section">
         <img
           src="./images/logo.svg"
@@ -18,7 +18,7 @@
           class="header__logo"
         />
       </header>
-<!-- main content -->
+      <!-- main content -->
       <main class="content">
         <section class="profile page__section">
           <img
@@ -34,18 +34,17 @@
           <button class="profile__add-button" type="button"></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
-<!-- footer -->
+      <!-- footer -->
       <footer class="footer page__section">
         <p class="footer__copyright">© 2024 Derrick Sanchez</p>
       </footer>
     </div>
-<!--  edit profile modal  -->
-<div class="modal" id="profile__edit-modal">
-  <div class="modal__container">
+    <!--  edit profile modal  -->
+    <div class="modal" id="profile__edit-modal">
+      <div class="modal__container">
         <button class="modal__button-close"></button>
         <h2 class="modal__heading">Edit profile</h2>
         <form class="modal__form" id="profile-form" novalidate>
@@ -67,12 +66,17 @@
         </form>
       </div>
     </div>
-<!--  add card modal  -->
+    <!--  add card modal  -->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__button-close"></button>
         <h2 class="modal__heading">New place</h2>
-        <form class="modal__form" id="add-card-form" name="card-form" novalidate>
+        <form
+          class="modal__form"
+          id="add-card-form"
+          name="card-form"
+          novalidate
+        >
           <input
             type="text"
             class="modal__input"
@@ -91,14 +95,23 @@
         </form>
       </div>
     </div>
-<!--  card template  -->  
+    <!--  card template  -->
     <template class="card-template">
-<!--  classified as card-template and not card__template because it is not a child of card block  -->
+      <!--  classified as card-template and not card__template because it is not a child of card block  -->
       <li class="card">
+        <button
+          class="card__delete-button"
+          type="button"
+          id="card__delete-button"
+        ></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button"></button>
+          <button
+            class="card__like-button"
+            id="card__like-button"
+            type="button"
+          ></button>
         </div>
       </li>
     </template>
