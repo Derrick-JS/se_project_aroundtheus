@@ -49,7 +49,7 @@ const nameInput = editProfileForm.querySelector("#profile-title-input");
 const jobInput = editProfileForm.querySelector("#profile-description-input");
 // Card Image Preview Modal
 const imagePreviewModal = document.querySelector("#image__preview-modal");
-const imagePreviewImage = imagePreviewModal.querySelector(".modal__image");
+const imagePreviewImage = imagePreviewModal.querySelector(".image__preview_image");
 const imageName = imagePreviewModal.querySelector("#image__preview_name");
 const imagePreviewCloseButton = imagePreviewModal.querySelector(".modal__button-close");
 
