@@ -25,20 +25,26 @@ const initialCards = [
   },
 ];
 // Profile Set Up
-const profileTitle = document.querySelector(".profile__title"); 
+const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector("#profile-description-input");
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
 // Profile Edit Modal
 const profileEditButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#profile__edit-modal");
 const editProfileForm = document.querySelector("#profile-form");
-const profileModalCloseButton = editProfileModal.querySelector(".modal__button-close");
+const profileModalCloseButton = editProfileModal.querySelector(
+  ".modal__button-close"
+);
 // Add Card Modal
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardForm = document.querySelector("#add-card-form");
 const addNewCardButton = document.querySelector(".profile__add-button");
-const addCardModalCloseButton = addCardModal.querySelector(".modal__button-close");
+const addCardModalCloseButton = addCardModal.querySelector(
+  ".modal__button-close"
+);
 // Card Template
 const cardTemplate = document.querySelector(".card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -51,7 +57,9 @@ const jobInput = editProfileForm.querySelector("#profile-description-input");
 const imagePreviewModal = document.querySelector("#image__preview-modal");
 const imagePreviewImage = imagePreviewModal.querySelector(".modal__image");
 const imageName = imagePreviewModal.querySelector(".modal__caption");
-const imagePreviewCloseButton = imagePreviewModal.querySelector(".modal__button-close");
+const imagePreviewCloseButton = imagePreviewModal.querySelector(
+  ".modal__button-close"
+);
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -68,17 +76,20 @@ function handleProfileFormSubmit(event) {
   closeModal(editProfileModal);
 }
 
-function handleAddCardFormSubmit(event){
+function handleAddCardFormSubmit(event) {
   event.preventDefault();
-   const name = cardTitleInput.value;
-   const link = cardURLInput.value;
-   renderCard({name, link}, cardsList);
+  const name = cardTitleInput.value;
+  const link = cardURLInput.value;
+  renderCard({ name, link }, cardsList);
+  event.target.reset();
   closeModal(addCardModal);
-};
+}
 
 // Generate Elements of the Cards
 function getCardElement(data) {
-  const cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
@@ -107,7 +118,6 @@ function renderCard(cardData, wrapper) {
   wrapper.prepend(cardElement);
 }
 
-
 function handleCardImageClick(event) {
   if (event.target.classList.contains("card__image")) {
     const cardImage = event.target;
@@ -126,15 +136,21 @@ profileEditButton.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-profileModalCloseButton.addEventListener("click", () => closeModal(editProfileModal));
+profileModalCloseButton.addEventListener("click", () =>
+  closeModal(editProfileModal)
+);
 // Add Card Listeners
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
-addCardModalCloseButton.addEventListener("click", () => closeModal(addCardModal));
+addCardModalCloseButton.addEventListener("click", () =>
+  closeModal(addCardModal)
+);
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 // Image Preview Listeners
-imagePreviewCloseButton.addEventListener("click", () => closeModal(imagePreviewModal));
+imagePreviewCloseButton.addEventListener("click", () =>
+  closeModal(imagePreviewModal)
+);
 
 // Generation of Cards from RenderCard Function that uses Card Elements
-initialCards.forEach(cardData => {
+initialCards.forEach((cardData) => {
   renderCard(cardData, cardsList);
 });
