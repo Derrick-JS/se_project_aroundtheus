@@ -78,9 +78,9 @@ function handleAddCardFormSubmit(event){
 
 // Generate Elements of the Cards
 function getCardElement(data) {
-  let cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
-  let cardImage = cardElement.querySelector(".card__image");
-  let cardTitle = cardElement.querySelector(".card__title");
+  const cardElement = cardTemplate.content.querySelector('.card').cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
 
@@ -91,9 +91,11 @@ function getCardElement(data) {
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
-
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
+  });
+  cardImage.addEventListener("click", (e) => {
+    handleCardImageClick(e);
   });
 
   return cardElement;
@@ -111,6 +113,7 @@ function handleCardImageClick(event) {
     const cardImage = event.target;
     const cardTitle = cardImage.closest(".card").querySelector(".card__title");
     imagePreviewImage.src = cardImage.src;
+    imagePreviewImage.alt = cardTitle.textContent;
     imageName.textContent = cardTitle.textContent;
     openModal(imagePreviewModal);
   }
@@ -129,7 +132,6 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () => closeModal(addCardModal));
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 // Image Preview Listeners
-cardsList.addEventListener("click", handleCardImageClick);
 imagePreviewCloseButton.addEventListener("click", () => closeModal(imagePreviewModal));
 
 // Generation of Cards from RenderCard Function that uses Card Elements
