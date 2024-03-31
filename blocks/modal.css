@@ -8,15 +8,15 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  visibility:hidden;
-  opacity:0;
-  transition:visibility 0s linear 0.5s,opacity 0.5s linear;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+  display: flex;
 }
 
 .modal_opened {
-  display: flex;
-  visibility:visible;
-  opacity:1;
+  visibility: visible;
+  opacity: 1;
   transition-delay: 0s;
 }
 
@@ -121,7 +121,8 @@
 .modal__image {
   justify-content: center;
   align-items: center;
-  width: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal__caption {
