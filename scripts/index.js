@@ -81,7 +81,7 @@ function handleAddCardFormSubmit(event) {
   const name = cardTitleInput.value;
   const link = cardURLInput.value;
   renderCard({ name, link }, cardsList);
-  event.target.reset();   
+  event.target.reset();
   closeModal(addCardModal);
 }
 
@@ -153,4 +153,17 @@ imagePreviewCloseButton.addEventListener("click", () =>
 // Generation of Cards from RenderCard Function that uses Card Elements
 initialCards.forEach((cardData) => {
   renderCard(cardData, cardsList);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const openModal = document.querySelectorAll(".modal_opened");
+    openModal.forEach((modal) => modal.classList.remove("modal_opened"));
+  }
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("modal")) {
+    e.target.classList.remove("modal_opened");
+  }
 });
