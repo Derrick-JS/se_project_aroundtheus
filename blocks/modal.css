@@ -10,7 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   visibility: hidden;
   opacity: 0;
-  transition: visibility  0.5s linear, opacity 0.5s linear;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
   display: flex;
 }
 
@@ -133,15 +133,24 @@
   width: 290px;
 }
 
-.modal__error {
+.popup__error {
   font-size: 12px;
   line-height: 15px;
-  color:  #ff0000;
-  opacity: 1;
+  color: #ff0000;
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
   transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.popup__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.popup__button_disabled {
+  background-color: #dcdcdc;
+  color: #a0a0a0;
 }
 
 @media screen and (max-width: 320px) {

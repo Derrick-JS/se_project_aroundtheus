@@ -50,7 +50,7 @@
         <form class="modal__form" id="profile-form" novalidate>
           <input
             type="text"
-            class="modal__input popup__input popup__input_type_error"
+            class="modal__input popup__input"
             name="title"
             id="profile-title-input"
             placeholder="Enter your name"
@@ -91,16 +91,21 @@
             name="name"
             id="card-title-input"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
+            required
           />
-          <span class="popup__error card-title-input-error"></span>
+          <span class="popup__error" id="card-title-input-error"></span>
           <input
             type="url"
             class="modal__input popup__input"
             name="link"
             id="card-image-input"
             placeholder="Image link"
+            pattern="https?://.+"
+            required
           />
-          <span class="popup__error card-image-input-error"></span>
+          <span class="popup__error" id="card-image-input-error"></span>
           <button class="modal__button-save popup__button" type="submit">Create</button>
         </form>
       </div>
@@ -133,6 +138,6 @@
       </li>
     </template>
     <script src="./scripts/index.js"></script>
-    <script src="./scripts/validation.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
