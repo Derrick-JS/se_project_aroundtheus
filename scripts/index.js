@@ -61,14 +61,34 @@ const imagePreviewCloseButton = imagePreviewModal.querySelector(
   ".modal__button-close"
 );
 
+// Open and Close Modal Functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleCloseModalOnEsc);
+  modal.addEventListener("click", handleCloseModalOnClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleCloseModalOnEsc);
+  modal.removeEventListener("click", handleCloseModalOnClick);
 }
 
+// Close Modal Listeners
+const handleCloseModalOnEsc = (e) => {
+  if (e.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    closeModal(openModal);
+  }
+};
+
+const handleCloseModalOnClick = (e) => {
+  if (e.target.classList.contains("modal")) {
+    e.target.classList.remove("modal_opened");
+  }
+};
+
+// Form Submit Functions
 function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -153,17 +173,4 @@ imagePreviewCloseButton.addEventListener("click", () =>
 // Generation of Cards from RenderCard Function that uses Card Elements
 initialCards.forEach((cardData) => {
   renderCard(cardData, cardsList);
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    const openModal = document.querySelectorAll(".modal_opened");
-    openModal.forEach((modal) => modal.classList.remove("modal_opened"));
-  }
-});
-
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("modal")) {
-    e.target.classList.remove("modal_opened");
-  }
 });

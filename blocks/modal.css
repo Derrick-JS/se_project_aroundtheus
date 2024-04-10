@@ -133,7 +133,7 @@
   width: 290px;
 }
 
-.popup__error {
+.modal__error {
   font-size: 12px;
   line-height: 15px;
   color: #ff0000;
@@ -144,11 +144,11 @@
   opacity: 1;
 }
 
-.popup__input_type_error {
+.modal__input_type_error {
   border-bottom: 1px solid #ff0000;
 }
 
-.popup__button_disabled {
+.modal__button_disabled {
   background-color: #dcdcdc;
   color: #a0a0a0;
 }
