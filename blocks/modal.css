@@ -138,10 +138,11 @@
   line-height: 15px;
   color: #ff0000;
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + -25px);
   left: 0;
   transition: opacity 0.3s;
   opacity: 1;
+  z-index: 2;
 }
 
 .modal__input_type_error {
@@ -151,6 +152,11 @@
 .modal__button_disabled {
   background-color: #dcdcdc;
   color: #a0a0a0;
+}
+
+.modal__label {
+  position: relative;
+  display: block;
 }
 
 @media screen and (max-width: 320px) {

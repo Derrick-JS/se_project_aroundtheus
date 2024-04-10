@@ -48,6 +48,7 @@
         <button class="modal__button-close"></button>
         <h2 class="modal__heading">Edit profile</h2>
         <form class="modal__form" id="profile-form" novalidate>
+          <label class="modal__label">
           <input
             type="text"
             class="modal__input modal__input"
@@ -59,6 +60,8 @@
             required
           />
           <span class="modal__error" id="profile-title-input-error"></span>
+        </label>
+        <label class="modal__label">
           <input
             type="text"
             class="modal__input modal__input"
@@ -70,6 +73,7 @@
             required
           />
           <span class="modal__error" id="profile-description-input-error"></span>
+        </label>
           <button class="modal__button-save modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -85,6 +89,7 @@
           name="card-form"
           novalidate
         >
+        <label class="modal__label">
           <input
             type="text"
             class="modal__input modal__input"
@@ -96,6 +101,9 @@
             required
           />
           <span class="modal__error" id="card-title-input-error"></span>
+        </label>
+        <label class="modal__label">
+
           <input
             type="url"
             class="modal__input modal__input"
@@ -106,6 +114,7 @@
             required
           />
           <span class="modal__error" id="card-image-input-error"></span>
+        </label>
           <button class="modal__button-save modal__button" type="submit">Create</button>
         </form>
       </div>
