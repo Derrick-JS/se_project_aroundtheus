@@ -25,6 +25,7 @@ const initialCards = [
   },
 ];
 // Profile Set Up
+const modal = document.querySelector(".modal");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
