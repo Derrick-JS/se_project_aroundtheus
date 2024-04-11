@@ -68,8 +68,8 @@ function openModal(modal) {
   modal.addEventListener("click", handleCloseModalOnClick);
 }
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
+function closeModal() {
+  document.querySelector('.modal_opened').classList.remove("modal_opened");
   document.removeEventListener("keydown", handleCloseModalOnEsc);
   modal.removeEventListener("click", handleCloseModalOnClick);
 }
@@ -77,14 +77,13 @@ function closeModal(modal) {
 // Close Modal Listeners
 const handleCloseModalOnEsc = (e) => {
   if (e.key === "Escape") {
-    const openModal = document.querySelector(".modal_opened");
-    closeModal(openModal);
+    closeModal();
   }
 };
 
 const handleCloseModalOnClick = (e) => {
   if (e.target.classList.contains("modal")) {
-    e.target.classList.remove("modal_opened");
+    closeModal();
   }
 };
 
@@ -93,7 +92,7 @@ function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(editProfileModal);
+  closeModal();
 }
 
 function handleAddCardFormSubmit(event) {
@@ -102,7 +101,7 @@ function handleAddCardFormSubmit(event) {
   const link = cardURLInput.value;
   renderCard({ name, link }, cardsList);
   event.target.reset();
-  closeModal(addCardModal);
+  closeModal();
 }
 
 // Generate Elements of the Cards
@@ -157,17 +156,17 @@ profileEditButton.addEventListener("click", function () {
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 profileModalCloseButton.addEventListener("click", () =>
-  closeModal(editProfileModal)
+  closeModal()
 );
 // Add Card Listeners
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addCardModalCloseButton.addEventListener("click", () =>
-  closeModal(addCardModal)
+  closeModal()
 );
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 // Image Preview Listeners
 imagePreviewCloseButton.addEventListener("click", () =>
-  closeModal(imagePreviewModal)
+  closeModal()
 );
 
 // Generation of Cards from RenderCard Function that uses Card Elements
