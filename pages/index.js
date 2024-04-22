@@ -27,6 +27,17 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+// Form Validation Settings
+const validationSettings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 // Profile Set Up
 const modal = document.querySelector(".modal");
 const profileTitle = document.querySelector(".profile__title");
@@ -124,6 +135,19 @@ function handleCardImageClick(event) {
     imageName.textContent = cardTitle.textContent;
     openModal(imagePreviewModal);
   }
+}
+
+if (editProfileForm) {
+  const editFormValidator = new FormValidator(
+    validationSettings,
+    editProfileForm
+  );
+  editFormValidator.enableValidation();
+}
+
+if (addCardForm) {
+  const addFormValidator = new FormValidator(validationSettings, addCardForm);
+  addFormValidator.enableValidation();
 }
 
 // Profile Listeners
