@@ -137,18 +137,17 @@ function handleCardImageClick(event) {
   }
 }
 
-if (editProfileForm) {
-  const editFormValidator = new FormValidator(
-    validationSettings,
-    editProfileForm
-  );
-  editFormValidator.enableValidation();
-}
+(function validateForm(editProfileForm, addCardForm) {
+  const validate = (form) => {
+    if (form) {
+      const formValidator = new FormValidator(validationSettings, form);
+      formValidator.enableValidation();
+    }
+  };
 
-if (addCardForm) {
-  const addFormValidator = new FormValidator(validationSettings, addCardForm);
-  addFormValidator.enableValidation();
-}
+  validate(editProfileForm);
+  validate(addCardForm);
+})();
 
 // Profile Listeners
 profileEditButton.addEventListener("click", function () {
