@@ -1,5 +1,5 @@
-import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -73,7 +73,7 @@ function openModal(modal) {
 }
 
 function closeModal() {
-  document.querySelector('.modal_opened').classList.remove("modal_opened");
+  document.querySelector(".modal_opened").classList.remove("modal_opened");
   document.removeEventListener("keydown", handleCloseModalOnEsc);
   modal.removeEventListener("click", handleCloseModalOnClick);
 }
@@ -108,36 +108,10 @@ function handleAddCardFormSubmit(event) {
   closeModal();
 }
 
-// Generate Elements of the Cards
-function getCardElement(data) {
-  const cardElement = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-
-  cardImage.src = data.link;
-  cardImage.alt = "Picture of " + data.name;
-  cardTitle.textContent = data.name;
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-  cardImage.addEventListener("click", (e) => {
-    handleCardImageClick(e);
-  });
-
-  return cardElement;
-}
-
-// Uses Card Elements to Render Cards
+// Uses Card Class to Render Card Elements
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, ".card-template", handleCardImageClick);
+  const cardElement = card.getView();
   wrapper.prepend(cardElement);
 }
 
@@ -159,19 +133,13 @@ profileEditButton.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-profileModalCloseButton.addEventListener("click", () =>
-  closeModal()
-);
+profileModalCloseButton.addEventListener("click", () => closeModal());
 // Add Card Listeners
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
-addCardModalCloseButton.addEventListener("click", () =>
-  closeModal()
-);
+addCardModalCloseButton.addEventListener("click", () => closeModal());
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 // Image Preview Listeners
-imagePreviewCloseButton.addEventListener("click", () =>
-  closeModal()
-);
+imagePreviewCloseButton.addEventListener("click", () => closeModal());
 
 // Generation of Cards from RenderCard Function that uses Card Elements
 initialCards.forEach((cardData) => {
