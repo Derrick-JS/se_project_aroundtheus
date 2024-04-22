@@ -126,15 +126,12 @@ function renderCard(cardData, wrapper) {
   wrapper.prepend(cardElement);
 }
 
-function handleCardImageClick(event) {
-  if (event.target.classList.contains("card__image")) {
-    const cardImage = event.target;
-    const cardTitle = cardImage.closest(".card").querySelector(".card__title");
-    imagePreviewImage.src = cardImage.src;
-    imagePreviewImage.alt = cardTitle.textContent;
-    imageName.textContent = cardTitle.textContent;
-    openModal(imagePreviewModal);
-  }
+// Image Preview Modal
+function handleCardImageClick(data) {
+  imagePreviewImage.src = data.link;
+  imagePreviewImage.alt = data.name;
+  imageName.textContent = data.name;
+  openModal(imagePreviewModal);
 }
 
 (function validateForm(editProfileForm, addCardForm) {
