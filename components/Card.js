@@ -9,11 +9,10 @@ export default class Card {
 
   _setEventListeners() {
     // like event listener
-    this._cardElement
-      .querySelector(`.card__like-button`)
-      .addEventListener("click", () => {
-        this._handleLike();
-      });
+    this._likeButton.addEventListener("click", () => {
+      this._handleLike();
+    });
+    // Uncaught DOMException: Element.querySelector: '[object HTMLButtonElement]' is not a valid selector
 
     // delete event listener
     this._cardElement
@@ -23,11 +22,9 @@ export default class Card {
       });
 
     // image preview event listener
-    this._cardElement
-      .querySelector(`.card__image`)
-      .addEventListener("click", () => {
-        this._handleCardImageClick(this._data);
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardImageClick(this._data);
+    });
   }
 
   // like handler
