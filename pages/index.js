@@ -39,7 +39,6 @@ const validationSettings = {
 };
 
 // Profile Set Up
-const modal = document.querySelector(".modal");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -49,15 +48,14 @@ const profileDescriptionInput = document.querySelector(
 // Profile Edit Modal
 const profileEditButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#profile__edit-modal");
-// const editProfileForm = document.querySelector("#profile-form");
-const editProfileForm = editProfileModal.querySelector(".modal__form");
+const editProfileForm = document.forms["profile-form"];
 const profileModalCloseButton = editProfileModal.querySelector(
   ".modal__button-close"
 );
+
 // Add Card Modal
 const addCardModal = document.querySelector("#add-card-modal");
-// const addCardForm = document.querySelector("#add-card-form");
-const addCardForm = addCardModal.querySelector(".modal__form");
+const addCardForm = document.forms["add-card-form"];
 const addNewCardButton = document.querySelector(".profile__add-button");
 const addCardModalCloseButton = addCardModal.querySelector(
   ".modal__button-close"
@@ -86,9 +84,11 @@ function openModal(modal) {
 }
 
 function closeModal() {
-  document.querySelector(".modal_opened").classList.remove("modal_opened");
   document.removeEventListener("keydown", handleCloseModalOnEsc);
-  modal.removeEventListener("click", handleCloseModalOnClick);
+  document
+    .querySelector(".modal_opened")
+    .removeEventListener("click", handleCloseModalOnClick);
+  document.querySelector(".modal_opened").classList.remove("modal_opened");
 }
 
 // Close Modal Listeners
@@ -122,9 +122,15 @@ function handleAddCardFormSubmit(event) {
 }
 
 // Uses Card Class to Render Card Elements
-function renderCard(cardData, wrapper) {
+
+function createCard(cardData) {
   const card = new Card(cardData, ".card-template", handleCardImageClick);
   const cardElement = card.getView();
+  return cardElement;
+}
+
+function renderCard(cardData, wrapper) {
+  const cardElement = createCard(cardData);
   wrapper.prepend(cardElement);
 }
 

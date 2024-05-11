@@ -22,6 +22,7 @@ export default class FormValidator {
     this._submitButton = this._formElement.querySelector(
       this._submitButtonSelector
     );
+    this._toggleButtonState();
   }
 
   _showInputError(inputElement, errorMessage) {
