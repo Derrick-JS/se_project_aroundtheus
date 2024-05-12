@@ -1,3 +1,6 @@
+// Apologies to the reviewers
+// I shouldnt have taken my frustration out on you
+
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
