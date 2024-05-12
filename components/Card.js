@@ -12,7 +12,6 @@ export default class Card {
     this._likeButton.addEventListener("click", () => {
       this._handleLike();
     });
-    // Uncaught DOMException: Element.querySelector: '[object HTMLButtonElement]' is not a valid selector
 
     // delete event listener
     this._cardElement

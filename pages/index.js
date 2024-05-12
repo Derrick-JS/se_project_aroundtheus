@@ -81,6 +81,12 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleCloseModalOnEsc);
   modal.addEventListener("click", handleCloseModalOnClick);
+
+  const formValidator = new FormValidator(
+    validationSettings,
+    modal.querySelector(".modal__form")
+  );
+  formValidator._toggleButtonState();
 }
 
 function closeModal() {
