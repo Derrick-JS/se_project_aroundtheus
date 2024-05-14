@@ -81,24 +81,13 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleCloseModalOnEsc);
   modal.addEventListener("click", handleCloseModalOnClick);
-  // Get form element from modal
-  const formElement = modal.querySelector(".modal__form");
-  // Check if form element exists
-  if (formElement) {
-    const formValidator = new FormValidator(
-      validationSettings,
-      modal.querySelector(".modal__form")
-    );
-    formValidator.toggleButtonState();
-  }
 }
 
 function closeModal() {
+  const openedModal = document.querySelector(".modal_opened");
+  openedModal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleCloseModalOnEsc);
-  document
-    .querySelector(".modal_opened")
-    .removeEventListener("click", handleCloseModalOnClick);
-  document.querySelector(".modal_opened").classList.remove("modal_opened");
+  openedModal.removeEventListener("click", handleCloseModalOnClick);
 }
 
 // Close Modal Listeners
@@ -119,6 +108,7 @@ function handleProfileFormSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+  // profileFormValidator.resetValidation();
   closeModal();
 }
 
@@ -128,6 +118,7 @@ function handleAddCardFormSubmit(event) {
   const link = cardURLInput.value;
   renderCard({ name, link }, cardsList);
   event.target.reset();
+  // cardFormValidator.resetValidation();
   closeModal();
 }
 
@@ -152,27 +143,75 @@ function handleCardImageClick(data) {
   openModal(imagePreviewModal);
 }
 
-(function validateForm(editProfileForm, addCardForm) {
-  const validate = (form) => {
-    if (form) {
-      const formValidator = new FormValidator(validationSettings, form);
-      formValidator.enableValidation(validationSettings);
-    }
-  };
-  validate(editProfileForm);
-  validate(addCardForm);
-})(editProfileForm, addCardForm);
+// define an object for storing validators
+const formValidators = {};
+
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(
+    document.querySelectorAll(validationSettings.formSelector)
+  );
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationSettings, formElement);
+    // here you get the name of the form (if you don’t have it then you need to add it into each form in `index.html` first)
+    const formName = formElement.getAttribute("name");
+
+    // here you store the validator using the `name` of the form
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationSettings);
+
+// TODO: Reset Validation
+// formValidators[editProfileForm.getAttribute("name")].resetValidation();
+
+// or you can use a string – the name of the form (you know it from `index.html`)
+
+// formValidators["profile-form"].resetValidation();
+
+const validate = (form) => {
+  if (form) {
+    const formValidator = new FormValidator(validationSettings, form);
+    formValidator.enableValidation();
+    return formValidator;
+  }
+};
+
+const profileFormValidator = validate(editProfileForm);
+const cardFormValidator = validate(addCardForm);
 
 // Profile Listeners
 profileEditButton.addEventListener("click", function () {
+  // Setting Up Profile Modal Inputs
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(editProfileModal);
+
+  // Once open, we need to validate the form
+  const modal = document.querySelector(".modal_opened");
+  const formElement = modal.querySelector(".modal__form");
+  if (formElement) {
+    const formValidator = new FormValidator(
+      validationSettings,
+      modal.querySelector(".modal__form")
+    );
+    formValidator.toggleButtonState();
+  }
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 profileModalCloseButton.addEventListener("click", () => closeModal());
 // Add Card Listeners
-addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addNewCardButton.addEventListener("click", function () {
+  // We dont need to set anything up here so we can just open the modal
+  openModal(addCardModal);
+  // Once open, we need to validate the form
+  const formElement = addCardModal.querySelector(".modal__form");
+  if (formElement) {
+    const formValidator = new FormValidator(validationSettings, formElement);
+    formValidator.toggleButtonState();
+  }
+});
 addCardModalCloseButton.addEventListener("click", () => closeModal());
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 // Image Preview Listeners

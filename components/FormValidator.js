@@ -10,7 +10,6 @@ export default class FormValidator {
     this._submitButtonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
-    // Uncaught TypeError: this._formElement is null
   }
 
   _setEventListeners() {
