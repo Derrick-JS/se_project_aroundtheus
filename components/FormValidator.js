@@ -7,10 +7,10 @@ export default class FormValidator {
     this._errorClass = validationSettings.errorClass;
 
     this._formElement = formElement;
-
-    this._submitButton = this._formElement.querySelector(
+    this._submitButtonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
+    // Uncaught TypeError: this._formElement is null
   }
 
   _setEventListeners() {
@@ -20,7 +20,7 @@ export default class FormValidator {
     inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
@@ -61,16 +61,16 @@ export default class FormValidator {
   }
 
   _enableSubmitButton() {
-    this._submitButton.classList.remove(this._inactiveButtonClass);
-    this._submitButton.disabled = false;
+    this._submitButtonElement.classList.remove(this._inactiveButtonClass);
+    this._submitButtonElement.disabled = false;
   }
 
   _disableSubmitButton() {
-    this._submitButton.classList.add(this._inactiveButtonClass);
-    this._submitButton.disabled = true;
+    this._submitButtonElement.classList.add(this._inactiveButtonClass);
+    this._submitButtonElement.disabled = true;
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._disableSubmitButton();
     } else {
