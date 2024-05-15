@@ -143,26 +143,6 @@ function handleCardImageClick(data) {
   openModal(imagePreviewModal);
 }
 
-// define an object for storing validators
-const formValidators = {};
-
-const enableValidation = (validationSettings) => {
-  const formList = Array.from(
-    document.querySelectorAll(validationSettings.formSelector)
-  );
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(validationSettings, formElement);
-    // here you get the name of the form (if you don’t have it then you need to add it into each form in `index.html` first)
-    const formName = formElement.getAttribute("name");
-
-    // here you store the validator using the `name` of the form
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
-};
-
-enableValidation(validationSettings);
-
 // TODO: Reset Validation
 // formValidators[editProfileForm.getAttribute("name")].resetValidation();
 
