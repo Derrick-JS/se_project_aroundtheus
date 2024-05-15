@@ -187,30 +187,14 @@ profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(editProfileModal);
-
-  // Once open, we need to validate the form
-  const modal = document.querySelector(".modal_opened");
-  const formElement = modal.querySelector(".modal__form");
-  if (formElement) {
-    const formValidator = new FormValidator(
-      validationSettings,
-      modal.querySelector(".modal__form")
-    );
-    formValidator.toggleButtonState();
-  }
+  profileFormValidator.toggleButtonState();
 });
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 profileModalCloseButton.addEventListener("click", () => closeModal());
 // Add Card Listeners
 addNewCardButton.addEventListener("click", function () {
-  // We dont need to set anything up here so we can just open the modal
   openModal(addCardModal);
-  // Once open, we need to validate the form
-  const formElement = addCardModal.querySelector(".modal__form");
-  if (formElement) {
-    const formValidator = new FormValidator(validationSettings, formElement);
-    formValidator.toggleButtonState();
-  }
+  cardFormValidator.toggleButtonState();
 });
 addCardModalCloseButton.addEventListener("click", () => closeModal());
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
