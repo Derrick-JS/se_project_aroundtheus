@@ -1,38 +1,39 @@
-class Popup {
-  constructor({ popupSelector }) {
+export default class Popup {
+  constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
+    this._handleCloseButton = this._handleCloseButton.bind(this);
   }
 
   open() {
-    this._popup.classList.add("modal_opened"); // Show the modal
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        this.close();
-      }
-    });
-    this._popup.addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal")) {
-        this.close();
-      }
-    });
+    this._popup.classList.add("modal_opened");
+    this.setEventListeners();
   }
 
   close() {
-    this._popup.classList.remove("modal_opened"); // Hide the modal
-    document.removeEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        this.close();
-      }
-    });
-    this._popup.removeEventListener("click", (e) => {
-      if (e.target.classList.contains("modal")) {
-        this.close();
-      }
-    });
+    this._popup.classList.remove("modal_opened");
+    this.removeEventListeners();
   }
 
+  _handleEscClose = (e) => {
+    if (e.key === "Escape") {
+      this.close();
+    }
+  };
+
+  _handleCloseButton = (e) => {
+    if (e.target.classList.contains("modal__close-button")) {
+      this.close();
+    }
+  };
+
   setEventListeners() {
-    // does this class need event listeners
+    this._popup.addEventListener("click", this._handleCloseButton);
+    document.addEventListener("keydown", this._handleEscClose);
+  }
+
+  removeEventListeners() {
+    this._popup.removeEventListener("click", this._handleCloseButton);
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 }
-export default Popup;

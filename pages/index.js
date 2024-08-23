@@ -5,7 +5,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
+// import PopupWithImage from "../components/PopupWithImage.js";
 
 /*********************
  * INITIAL CARD DATA *
@@ -100,6 +100,23 @@ addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 /******************
  * POPUPWITHFORM; *
  ******************/
+
+const profilePopup = new PopupWithForm(editProfileModal, {
+  handleFormSubmit: (data) => {
+    profileTitle.textContent = data["profile-title"];
+    profileDescription.textContent = data["profile-description"];
+  },
+});
+
+profilePopup.setEventListeners();
+
+const cardPopup = new PopupWithForm(addCardModal, {
+  handleFormSubmit: (data) => {
+    renderCard(data, cardsList);
+  },
+});
+
+cardPopup.setEventListeners();
 
 /*******************
  * POPUPWITHIMAGE; *
