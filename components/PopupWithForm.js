@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
-class PopupWithForm extends Popup {
-  constructor({ popupSelector, handleFormSubmit }) {
+export default class PopupWithForm extends Popup {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".modal__form");
@@ -16,9 +16,40 @@ class PopupWithForm extends Popup {
     return data;
   }
 
+  _handleProfileFormSubmit(data) {
+    const profileTitle = document.querySelector("#profile-title-input");
+    const profileDescription = document.querySelector(
+      "#profile-description-input"
+    );
+    if (data.profileTitle) profileTitle.textContent = data.profileTitle;
+    if (data.profileDescription)
+      profileDescription.textContent = data.profileDescription;
+    this.close();
+  }
+
+  _handleAddCardFormSubmit(data) {
+    const { name, link } = data;
+    if (name && link) {
+      renderCard({ name, link }, cardsList);
+    } else {
+      console.error("Card name or link is missing");
+    }
+    this.close();
+  }
+
+  handleFormSubmit() {
+    const data = this._getInputValues();
+    if (this._form.id === "profile-form") {
+      this._handleProfileFormSubmit(data);
+    } else if (this._form.id === "add-card-form") {
+      this._handleAddCardFormSubmit(data);
+    } else {
+      console.error("Unknown form type");
+    }
+  }
+
   open() {
     super.open();
-    // this._button.textContent = "Save";
   }
 
   close() {
@@ -27,61 +58,10 @@ class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
+      console.log("Form submit event triggered"); // Debugging log
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
+      this.handleFormSubmit();
     });
   }
 }
-
-export default PopupWithForm;
-
-// The PopupWithForm class extends the
-// Popup class and adds the following
-// functionality:
-// A constructor that takes two arguments:
-// popupSelector — the CSS selector of the
-// popup element.
-// handleFormSubmit — a function that
-// should handle the form submission.
-// A private method _getInputValues that
-// collects data from all the input fields.
-// A method setEventListeners that adds an
-// event listener to the form submission.
-// A method close that resets the form and
-// closes the popup.
-// A method open that opens the popup.
-// The PopupWithForm class is used to create
-// popups that contain forms. The
-// handleFormSubmit function passed to the
-// constructor should handle the form
-// submission. The _getInputValues method
-// collects the data from the input fields
-// and returns it as an object. The
-// setEventListeners method adds an event
-// listener to the form submission. The close
-// method resets the form and closes the
-// popup. The open method opens the popup.
-// The PopupWithForm class is used in the
-// following way:
-// const popupWithForm = new PopupWithForm(
-//   ".modal_type_edit-profile",
-//   {
-//     handleFormSubmit: (data) => {
-//       console.log(data);
-//     },
-//   }
-// );
-// popupWithForm.setEventListeners();
-// popupWithForm.open();
-// The code above creates a new instance of
-// the PopupWithForm class and sets the event
-// listeners. The open method opens the
-// popup. The handleFormSubmit function logs
-// the form data to the console. The
-// PopupWithForm class is used to create
-// popups that contain forms. The
-// handleFormSubmit function passed to the
-// constructor should handle the form
-// submission.

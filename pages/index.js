@@ -4,6 +4,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 
 /*********************
  * INITIAL CARD DATA *
@@ -77,6 +78,74 @@ const imagePreviewCloseButton = imagePreviewModal.querySelector(
  * POPUPWITHFORM; *
  ******************/
 
+// const profilePopup = new PopupWithForm({
+//   popupSelector: "#profile__edit-modal",
+//   handleFormSubmit: handleFormSubmit,
+// });
+
+const closeModal = () => {
+  profilePopup.close();
+};
+
+const profilePopup = new PopupWithForm({
+  popupSelector: "#profile__edit-modal",
+  handleFormSubmit: function (data) {
+    if (
+      document.querySelector("#profile__edit-modal .modal__form").id ===
+      "profile-form"
+    ) {
+      // Profile form submission logic
+      profileTitle.textContent = data.title;
+      profileDescription.textContent = data.description;
+      // how do i close the modal here without referencing the class im referencing tresulting in a loop
+      // closeModal();
+      this.close();
+    } else if (
+      document.querySelector("#profile__edit-modal .modal__form").id ===
+      "add-card-form"
+    ) {
+      // Add card form submission logic
+      const name = data.name;
+      const link = data.link;
+      renderCard({ name, link }, cardsList);
+      // closeModal();
+      this.close();
+    } else {
+      console.log("Error: Unknown form type");
+    }
+  },
+});
+
+profilePopup.setEventListeners();
+
+const cardPopup = new PopupWithForm({
+  popupSelector: "#add-card-modal",
+  handleFormSubmit: function (data) {
+    if (
+      document.querySelector("#add-card-modal .modal__form").id ===
+      "profile-form"
+    ) {
+      // Profile form submission logic
+      profileTitle.textContent = data.title;
+      profileDescription.textContent = data.description;
+      closeModal();
+    } else if (
+      document.querySelector("#add-card-modal .modal__form").id ===
+      "add-card-form"
+    ) {
+      // Add card form submission logic
+      const name = data.name;
+      const link = data.link;
+      renderCard({ name, link }, cardsList);
+      closeModal();
+    } else {
+      console.log("Unknown form type");
+    }
+  },
+});
+
+cardPopup.setEventListeners();
+
 /**********************
  * EDIT PROFILE MODAL *
  *  POPUP WITH FORM   *
@@ -85,39 +154,23 @@ const imagePreviewCloseButton = imagePreviewModal.querySelector(
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  openModal(editProfileModal);
+  profilePopup.open(editProfileModal);
   profileFormValidator.toggleButtonState();
 });
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-profileModalCloseButton.addEventListener("click", () => closeModal());
-
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closeModal();
-}
+editProfileForm.addEventListener("submit", profilePopup.handleFormSubmit());
+profileModalCloseButton.addEventListener("click", () => profilePopup.close());
 
 /*******************
  * ADD CARD MODAL  *
  * POPUP WITH FORM *
  *******************/
 
-function handleAddCardFormSubmit(event) {
-  event.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardURLInput.value;
-  renderCard({ name, link }, cardsList);
-  event.target.reset();
-  closeModal();
-}
-
 addNewCardButton.addEventListener("click", function () {
-  openModal(addCardModal);
+  cardPopup.open(addCardModal);
   cardFormValidator.toggleButtonState();
 });
-addCardModalCloseButton.addEventListener("click", () => closeModal());
-addCardForm.addEventListener("submit", handleAddCardFormSubmit);
+addCardModalCloseButton.addEventListener("click", () => cardPopup.close());
+// addCardForm.addEventListener("submit", cardPopup.handleFormSubmit());
 
 /*******************
  * POPUPWITHIMAGE; *
