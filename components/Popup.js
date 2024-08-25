@@ -1,4 +1,4 @@
-class Popup {
+export default class Popup {
   constructor({ popupSelector }) {
     this._popup = document.querySelector(popupSelector);
   }
@@ -35,4 +35,3 @@ class Popup {
     // does this class need event listeners
   }
 }
-export default Popup;

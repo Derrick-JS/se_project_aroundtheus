@@ -3,8 +3,6 @@
  *********************/
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import UserInfo from "../components/UserInfo.js";
-import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
 /*********************
@@ -75,9 +73,15 @@ const imagePreviewCloseButton = imagePreviewModal.querySelector(
   ".modal__button-close"
 );
 
-/*********************
- * PROFILE LISTENERS *
- *********************/
+/******************
+ * POPUPWITHFORM; *
+ ******************/
+
+/**********************
+ * EDIT PROFILE MODAL *
+ *  POPUP WITH FORM   *
+ **********************/
+
 profileEditButton.addEventListener("click", function () {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -87,9 +91,27 @@ profileEditButton.addEventListener("click", function () {
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 profileModalCloseButton.addEventListener("click", () => closeModal());
 
-/**********************
- * ADD CARD LISTENERS *
- **********************/
+function handleProfileFormSubmit(event) {
+  event.preventDefault();
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  closeModal();
+}
+
+/*******************
+ * ADD CARD MODAL  *
+ * POPUP WITH FORM *
+ *******************/
+
+function handleAddCardFormSubmit(event) {
+  event.preventDefault();
+  const name = cardTitleInput.value;
+  const link = cardURLInput.value;
+  renderCard({ name, link }, cardsList);
+  event.target.reset();
+  closeModal();
+}
+
 addNewCardButton.addEventListener("click", function () {
   openModal(addCardModal);
   cardFormValidator.toggleButtonState();
@@ -97,16 +119,32 @@ addNewCardButton.addEventListener("click", function () {
 addCardModalCloseButton.addEventListener("click", () => closeModal());
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-/******************
- * POPUPWITHFORM; *
- ******************/
-
 /*******************
  * POPUPWITHIMAGE; *
  *******************/
 
-const imagePopup = new PopupWithImage(imagePreviewModal);
+// create a new instance of the PopupWithImage class
+const imagePopup = new PopupWithImage({
+  popupSelector: "#image__preview-modal",
+});
+
+// setting event listeners
 imagePopup.setEventListeners();
+
+/***********************
+ * IMAGE PREVIEW MODAL *
+ *  POPUP WITH MODAL   *
+ ***********************/
+
+imagePreviewCloseButton.addEventListener("click", () => imagePopup.close());
+
+function handleCardImageClick(data) {
+  imagePopup.open(data);
+}
+
+/************************
+  // ! HERE BE DRAGONS 
+ ************************/
 
 /*******************
  * FORM VALIDATOR; *
@@ -148,45 +186,4 @@ function createCard(cardData) {
 function renderCard(cardData, wrapper) {
   const cardElement = createCard(cardData);
   wrapper.prepend(cardElement);
-}
-
-/*************************************
- // ! FOLLOWING CODE IS DEPRECATED 
- *************************************/
-
-/***************************
- * IMAGE PREVIEW LISTENERS *
- ***************************/
-// ! Depricated - PopupWithImage class
-imagePreviewCloseButton.addEventListener("click", () => closeModal());
-
-/*************************
- * IMAGE PREVIEW HANDLER *
- *************************/
-// ! Depricated - PopupWithImage class
-function handleCardImageClick(data) {
-  imagePreviewImage.src = data.link;
-  imagePreviewImage.alt = data.name;
-  imageName.textContent = data.name;
-  openModal(imagePreviewModal);
-}
-
-/*************************
- * FORM SUBMIT FUNCTIONS *
- *************************/
-// ! Depricated - PopupWithForm class
-function handleProfileFormSubmit(event) {
-  event.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closeModal();
-}
-
-function handleAddCardFormSubmit(event) {
-  event.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardURLInput.value;
-  renderCard({ name, link }, cardsList);
-  event.target.reset();
-  closeModal();
 }
