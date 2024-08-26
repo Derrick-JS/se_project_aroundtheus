@@ -1,8 +1,8 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
+  constructor({ popupSelector, handleFormSubmit }) {
+    super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".modal__form");
   }
@@ -16,37 +16,41 @@ export default class PopupWithForm extends Popup {
     return data;
   }
 
-  _handleProfileFormSubmit(data) {
-    const profileTitle = document.querySelector("#profile-title-input");
-    const profileDescription = document.querySelector(
-      "#profile-description-input"
-    );
-    if (data.profileTitle) profileTitle.textContent = data.profileTitle;
-    if (data.profileDescription)
-      profileDescription.textContent = data.profileDescription;
+  _handleProfileFormSubmit() {
+    const data = this._getInputValues();
+    // const profileTitle = document.querySelector("#profile-title-input");
+    // const profileDescription = document.querySelector(
+    //   "#profile-description-input"
+    // );
+    // if (data.profileTitle) profileTitle.textContent = data.profileTitle;
+    // if (data.profileDescription)
+    //   profileDescription.textContent = data.profileDescription;
+
+    this._handleFormSubmit(data);
+
     this.close();
   }
 
   _handleAddCardFormSubmit(data) {
     const { name, link } = data;
     if (name && link) {
-      renderCard({ name, link }, cardsList);
+      // renderCard({ name, link }, cardsList);
     } else {
       console.error("Card name or link is missing");
     }
     this.close();
   }
 
-  handleFormSubmit() {
-    const data = this._getInputValues();
-    if (this._form.id === "profile-form") {
-      this._handleProfileFormSubmit(data);
-    } else if (this._form.id === "add-card-form") {
-      this._handleAddCardFormSubmit(data);
-    } else {
-      console.error("Unknown form type");
-    }
-  }
+  // handleFormSubmit() {
+  //   const data = this._getInputValues();
+  //   if (this._form.id === "profile-form") {
+  //     this._handleProfileFormSubmit(data);
+  //   } else if (this._form.id === "add-card-form") {
+  //     this._handleAddCardFormSubmit(data);
+  //   } else {
+  //     console.error("Unknown form type");
+  //   }
+  // }
 
   open() {
     super.open();
@@ -61,7 +65,7 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener("submit", (evt) => {
       console.log("Form submit event triggered"); // Debugging log
       evt.preventDefault();
-      this.handleFormSubmit();
+      this._handleProfileFormSubmit();
     });
   }
 }

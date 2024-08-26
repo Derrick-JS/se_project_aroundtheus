@@ -120,7 +120,9 @@ profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
-  handleFormSubmit: function (data) {
+  handleFormSubmit: (data) => {
+    console.log("PRESSED");
+    console.log(data);
     if (
       document.querySelector("#add-card-modal .modal__form").id ===
       "profile-form"
@@ -157,7 +159,7 @@ profileEditButton.addEventListener("click", function () {
   profilePopup.open(editProfileModal);
   profileFormValidator.toggleButtonState();
 });
-editProfileForm.addEventListener("submit", profilePopup.handleFormSubmit());
+//editProfileForm.addEventListener("submit", profilePopup.handleFormSubmit());
 profileModalCloseButton.addEventListener("click", () => profilePopup.close());
 
 /*******************
