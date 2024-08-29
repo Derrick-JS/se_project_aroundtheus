@@ -6,7 +6,6 @@ export default class PopupWithImage extends Popup {
     this._imageElement = this._popup.querySelector(".modal__image");
     this._captionElement = this._popup.querySelector(".modal__caption");
   }
-  //   ill give you html and you tell me how to code this._imageElement and this._captionElement
 
   open(data) {
     // Set the image's src and alt

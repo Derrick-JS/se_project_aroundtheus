@@ -16,34 +16,18 @@ export default class PopupWithForm extends Popup {
     return data;
   }
 
-  _handleProfileFormSubmit() {
-    const data = this._getInputValues();
-    this._handleFormSubmit(data);
-    this.close();
-  }
-
-  _handleAddCardFormSubmit(data) {
-    const { name, link } = data;
-    if (name && link) {
-    } else {
-      console.error("Card name or link is missing");
-    }
-    this.close();
-  }
-
-  open() {
-    super.open();
-  }
-
   close() {
-    this._form.reset();
     super.close();
+    this._form.reset();
   }
 
   setEventListeners() {
+    console.log("PopupWithForm setEventListeners");
     this._form.addEventListener("submit", (evt) => {
+      debugger;
       evt.preventDefault();
-      this._handleProfileFormSubmit();
+      this._handleFormSubmit(this._getInputValues());
+      console.log("PopupWithForm setEventListeners submit");
     });
   }
 }

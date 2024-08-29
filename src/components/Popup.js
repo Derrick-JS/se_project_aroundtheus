@@ -1,37 +1,41 @@
 export default class Popup {
   constructor({ popupSelector }) {
     this._popup = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
+    this._handleOverlayClose = this._handleOverlayClose.bind(this);
+  }
+
+  _handleEscClose = (e) => {
+    console.log("checking if key is escape");
+    if (e.key === "Escape") {
+      console.log("executing esc close");
+      this.close();
+    }
+  };
+
+  _handleOverlayClose(e) {
+    console.log("executing overlay close");
+    if (e.target.classList.contains("modal")) {
+      this.close();
+    }
   }
 
   open() {
     this._popup.classList.add("modal_opened"); // Show the modal
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        this.close();
-      }
-    });
-    this._popup.addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal")) {
-        this.close();
-      }
-    });
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._popup.classList.remove("modal_opened"); // Hide the modal
-    document.removeEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        this.close();
-      }
-    });
-    this._popup.removeEventListener("click", (e) => {
-      if (e.target.classList.contains("modal")) {
-        this.close();
-      }
-    });
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   setEventListeners() {
-    // does this class need event listeners
+    this._popup.addEventListener("click", this._handleOverlayClose);
+    // the other event listener (_handleEscClose) is added in the open method
+  }
+
+  removeEventListeners() {
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 }

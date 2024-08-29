@@ -10,36 +10,47 @@ import Section from "../components/Section.js";
 import * as constants from "../utils/constants.js";
 
 import "../pages/index.css";
+import UserInfo from "../components/UserInfo.js";
+
+/*************
+ * USERINFO; *
+ *************/
+
+const userProfileInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+});
 
 /******************
  * POPUPWITHFORM; *
  ******************/
 
-const closeModal = () => {
+// There are 3 modals with different buttons and forms in the project.
+// You need to name variables and functions the way all could understand what they are.
+
+// Please, delete the close icons handling from index.js because they should be handled by Popup from now on
+
+// there are three close modal functions that are used to close the modals
+
+// do we correctly call the close functions in the close buttons according to the abive specificatioms?
+
+function closeProfileModal() {
   profilePopup.close();
-};
+}
+
+function closeCardModal() {
+  cardPopup.close();
+}
+
+function closeImageModal() {
+  imagePopup.close();
+}
 
 const profilePopup = new PopupWithForm({
   popupSelector: "#profile__edit-modal",
-  handleFormSubmit: function (data) {
-    if (
-      document.querySelector("#profile__edit-modal .modal__form").id ===
-      "profile-form"
-    ) {
-      constants.profileTitle.textContent = data.title;
-      constants.profileDescription.textContent = data.description;
-      this.close();
-    } else if (
-      document.querySelector("#profile__edit-modal .modal__form").id ===
-      "add-card-form"
-    ) {
-      const name = data.name;
-      const link = data.link;
-      renderCard({ name, link }, constants.cardsList);
-      this.close();
-    } else {
-      console.log("Error: Unknown form type");
-    }
+  handleFormSubmit: (data) => {
+    userProfileInfo.setUserInfo(data);
+    closeProfileModal();
   },
 });
 
@@ -48,27 +59,8 @@ profilePopup.setEventListeners();
 const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    console.log("PRESSED");
-    if (
-      document.querySelector("#add-card-modal .modal__form").id ===
-      "profile-form"
-    ) {
-      // Profile form submission logic
-      constants.profileTitle.textContent = data.title;
-      constants.profileDescription.textContent = data.description;
-      closeModal();
-    } else if (
-      document.querySelector("#add-card-modal .modal__form").id ===
-      "add-card-form"
-    ) {
-      // Add card form submission logic
-      const name = data.name;
-      const link = data.link;
-      renderCard({ name, link }, constants.cardsList);
-      closeModal();
-    } else {
-      console.log("Unknown form type");
-    }
+    renderCard(data, constants.cardsList);
+    closeCardModal();
   },
 });
 
@@ -80,13 +72,14 @@ cardPopup.setEventListeners();
  **********************/
 
 constants.profileEditButton.addEventListener("click", function () {
-  constants.profileTitleInput.value = constants.profileTitle.textContent;
-  constants.profileDescriptionInput.value =
-    constants.profileDescription.textContent;
+  const { name, job } = userProfileInfo.getUserInfo();
+  constants.profileTitleInput.value = name;
+  constants.profileDescriptionInput.value = job;
+
   profilePopup.open(constants.editProfileModal);
   profileFormValidator.toggleButtonState();
 });
-//editProfileForm.addEventListener("submit", profilePopup.handleFormSubmit());
+
 constants.profileModalCloseButton.addEventListener("click", () =>
   profilePopup.close()
 );
@@ -108,12 +101,10 @@ constants.addCardModalCloseButton.addEventListener("click", () =>
  * POPUPWITHIMAGE; *
  *******************/
 
-// create a new instance of the PopupWithImage class
 const imagePopup = new PopupWithImage({
   popupSelector: "#image__preview-modal",
 });
 
-// setting event listeners
 imagePopup.setEventListeners();
 
 /***********************
@@ -122,9 +113,8 @@ imagePopup.setEventListeners();
  ***********************/
 
 constants.imagePreviewCloseButton.addEventListener("click", () =>
-  imagePopup.close()
+  closeImageModal()
 );
-
 function handleCardImageClick(data) {
   imagePopup.open(data);
 }
@@ -152,8 +142,6 @@ const cardFormValidator = validate(constants.addCardForm);
  * GENERATION OF CARDS FROM RENDERCARD FUNCTION THAT USES CARD ELEMENTS *
  ************************************************************************/
 
-// Assuming Card class and handleCardImageClick are defined elsewhere
-
 const cardGeneration = new Section(
   {
     items: constants.initialCards,
@@ -169,51 +157,9 @@ const cardGeneration = new Section(
 // Render initial items
 cardGeneration.renderItems();
 
-// Function to render and prepend a new card
+// Render new card
 function renderCard(cardData, wrapper) {
   const card = new Card(cardData, ".card-template", handleCardImageClick);
   const cardElement = card.getView();
   wrapper.prepend(cardElement);
 }
-
-/*********************
- * NEW GENERATION *
- *********************/
-
-// const cardGeneration = new Section(
-//   {
-//     items: constants.initialCards,
-//     renderer: (item) => {
-//       const card = new Card(item, ".card-template", handleCardImageClick);
-//       const cardElement = card.getView();
-//       cardGeneration.addItem(cardElement);
-//     },
-//   },
-//   ".cards__list"
-// );
-
-// cardGeneration.renderItems();
-
-// function renderCard(cardData, wrapper) {
-//   const cardElement = cardGeneration.addItem(cardData);
-//   wrapper.prepend(cardElement);
-// }
-
-/*************************
- * DEPRICATED GENERATION *
- *************************/
-
-// constants.initialCards.forEach((cardData) => {
-//   renderCard(cardData, constants.cardsList);
-// });
-
-// function createCard(cardData) {
-//   const card = new Card(cardData, ".card-template", handleCardImageClick);
-//   const cardElement = card.getView();
-//   return cardElement;
-// }
-
-// function renderCard(cardData, wrapper) {
-//   const cardElement = createCard(cardData);
-//   wrapper.prepend(cardElement);
-// }
