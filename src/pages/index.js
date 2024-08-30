@@ -25,15 +25,6 @@ const userProfileInfo = new UserInfo({
  * POPUPWITHFORM; *
  ******************/
 
-// There are 3 modals with different buttons and forms in the project.
-// You need to name variables and functions the way all could understand what they are.
-
-// Please, delete the close icons handling from index.js because they should be handled by Popup from now on
-
-// there are three close modal functions that are used to close the modals
-
-// do we correctly call the close functions in the close buttons according to the abive specificatioms?
-
 function closeProfileModal() {
   profilePopup.close();
 }
@@ -59,7 +50,8 @@ profilePopup.setEventListeners();
 const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    renderCard(data, constants.cardsList);
+    renderCard(data);
+    // constants.cardsList
     closeCardModal();
   },
 });
@@ -120,8 +112,8 @@ function handleCardImageClick(data) {
 }
 
 /************************
-  // ! HERE BE DRAGONS 
- ************************/
+    // ! HERE BE DRAGONS 
+  ************************/
 
 /*******************
  * FORM VALIDATOR; *
@@ -142,24 +134,61 @@ const cardFormValidator = validate(constants.addCardForm);
  * GENERATION OF CARDS FROM RENDERCARD FUNCTION THAT USES CARD ELEMENTS *
  ************************************************************************/
 
+function createCard(cardData) {
+  const card = new Card(cardData, ".card-template", handleCardImageClick);
+  return card.getView(); // Returns the card element
+}
+
+function renderCard(cardData) {
+  const cardElement = createCard(cardData); // Create the card element
+  cardGeneration.addItem(cardElement); // Use the global Section instance to add the new card
+}
+
 const cardGeneration = new Section(
   {
     items: constants.initialCards,
     renderer: (item) => {
-      const card = new Card(item, ".card-template", handleCardImageClick);
-      const cardElement = card.getView();
-      cardGeneration.addItem(cardElement);
+      const cardElement = createCard(item); // Create the card element using the createCard function
+      cardGeneration.addItem(cardElement); // Add the card element to the section
     },
   },
-  ".cards__list"
+  constants.cardsList // Passing the DOM element directly
 );
 
 // Render initial items
 cardGeneration.renderItems();
 
-// Render new card
-function renderCard(cardData, wrapper) {
-  const card = new Card(cardData, ".card-template", handleCardImageClick);
-  const cardElement = card.getView();
-  wrapper.prepend(cardElement);
-}
+// // Render new card
+// function renderCard(cardData, wrapper) {
+//   const card = new Card(cardData, ".card-template", handleCardImageClick);
+//   const cardElement = card.getView();
+
+//   // Create a new section
+//   const newCard = new Section(
+//     { items: [cardElement], renderer: (item) => wrapper.append(item) },
+//     wrapper
+//   );
+
+//   // Render the items in the section
+//   newCard.renderItems();
+// }
+
+// function createCard(item) {
+// here is the code of creating
+//   return cardElement.getView();
+// }
+
+// const cardGeneration = new Section(
+//   {
+//     items: constants.initialCards,
+//     renderer: (item) => {
+//       const card = new Card(item, ".card-template", handleCardImageClick);
+//       const cardElement = card.getView();
+//       cardGeneration.addItem(cardElement);
+//     },
+//   },
+//   constants.cardsList
+// );
+
+// // Render initial items
+// cardGeneration.renderItems();

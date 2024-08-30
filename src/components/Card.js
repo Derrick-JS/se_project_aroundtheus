@@ -8,30 +8,23 @@ export default class Card {
   }
 
   _setEventListeners() {
-    // like event listener
     this._likeButton.addEventListener("click", () => {
       this._handleLike();
     });
-
-    // delete event listener
     this._cardElement
       .querySelector(`.card__delete-button`)
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
-
-    // image preview event listener
     this._cardImage.addEventListener("click", () => {
       this._handleCardImageClick(this._data);
     });
   }
 
-  // like handler
   _handleLike() {
     this._likeButton.classList.toggle("card__like-button_active");
   }
 
-  // delete handler
   _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
@@ -44,7 +37,6 @@ export default class Card {
       .cloneNode(true);
   }
 
-  // todo: rename
   getView() {
     // get card template
     this._cardElement = this._getTemplate();
