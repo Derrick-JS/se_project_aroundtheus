@@ -14,13 +14,6 @@ export default class Popup {
     }
   };
 
-  // _handleOverlayClose = (e) => {
-  //   console.log("executing overlay close");
-  //   if (e.target.classList.contains("modal")) {
-  //     this.close();
-  //   }
-  // };
-
   open() {
     this._popup.classList.add("modal_opened");
     document.addEventListener("keydown", this._handleEscClose);
@@ -42,7 +35,6 @@ export default class Popup {
         this.close();
       }
     });
-    // this._popupCloseButton.addEventListener("click", this.close.bind(this));
     // the other event listener (_handleEscClose) is added in the open method
   }
 

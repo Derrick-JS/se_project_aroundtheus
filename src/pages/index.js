@@ -25,23 +25,10 @@ const userProfileInfo = new UserInfo({
  * POPUPWITHFORM; *
  ******************/
 
-function closeProfileModal() {
-  profilePopup.close();
-}
-
-function closeCardModal() {
-  cardPopup.close();
-}
-
-function closeImageModal() {
-  imagePopup.close();
-}
-
 const profilePopup = new PopupWithForm({
   popupSelector: "#profile__edit-modal",
   handleFormSubmit: (data) => {
     userProfileInfo.setUserInfo(data);
-    closeProfileModal();
   },
 });
 
@@ -50,25 +37,11 @@ profilePopup.setEventListeners();
 const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    cardGeneration.addItem(createCard(data)); //use the add item method
-
-    // constants.cardsList
-    closeCardModal();
+    cardGeneration.addItem(createCard(data));
   },
 });
 
 cardPopup.setEventListeners();
-
-// const cardPopup = new PopupWithForm({
-//   popupSelector: "#add-card-modal",
-//   handleFormSubmit: (data) => {
-//     createCard(data);
-//     // constants.cardsList
-//     closeCardModal();
-//   },
-// });
-
-// cardPopup.setEventListeners();
 
 /**********************
  * EDIT PROFILE MODAL *
@@ -125,7 +98,7 @@ function handleCardImageClick(data) {
 
 /************************
     // ! HERE BE DRAGONS 
-  ************************/
+/************************/
 
 /*******************
  * FORM VALIDATOR; *
@@ -165,67 +138,3 @@ const cardGeneration = new Section(
 
 // Render initial items
 cardGeneration.renderItems();
-
-// function createCard(cardData) {
-//   const card = new Card(cardData, ".card-template", handleCardImageClick);
-//   return card.getView(); // Returns the card element
-// }
-
-// function renderCard(cardData) {
-//   const cardElement = createCard(cardData); // Create the card element
-//   cardGeneration.addItem(cardElement); // Use the global Section instance to add the new card
-// }
-
-// const cardGeneration = new Section(
-//   {
-//     items: constants.initialCards,
-//     renderer: (item) => {
-//       const cardElement = createCard(item); // Create the card element using the createCard function
-//       cardGeneration.addItem(cardElement); // Add the card element to the section
-//     },
-//   },
-//   // constants.cardsList
-//   document.querySelector(".cards__list")
-// );
-
-// // Render initial items
-// cardGeneration.renderItems();
-
-/******************
- * OLD GENERATION *
- ******************/
-
-// // Render new card
-// function renderCard(cardData, wrapper) {
-//   const card = new Card(cardData, ".card-template", handleCardImageClick);
-//   const cardElement = card.getView();
-
-//   // Create a new section
-//   const newCard = new Section(
-//     { items: [cardElement], renderer: (item) => wrapper.append(item) },
-//     wrapper
-//   );
-
-//   // Render the items in the section
-//   newCard.renderItems();
-// }
-
-// function createCard(item) {
-// here is the code of creating
-//   return cardElement.getView();
-// }
-
-// const cardGeneration = new Section(
-//   {
-//     items: constants.initialCards,
-//     renderer: (item) => {
-//       const card = new Card(item, ".card-template", handleCardImageClick);
-//       const cardElement = card.getView();
-//       cardGeneration.addItem(cardElement);
-//     },
-//   },
-//   constants.cardsList
-// );
-
-// // Render initial items
-// cardGeneration.renderItems();
