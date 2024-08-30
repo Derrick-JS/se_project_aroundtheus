@@ -50,7 +50,7 @@ profilePopup.setEventListeners();
 const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    renderCard(data);
+    createCard(data);
     // constants.cardsList
     closeCardModal();
   },
@@ -136,27 +136,52 @@ const cardFormValidator = validate(constants.addCardForm);
 
 function createCard(cardData) {
   const card = new Card(cardData, ".card-template", handleCardImageClick);
-  return card.getView(); // Returns the card element
+  return card.getView();
 }
 
-function renderCard(cardData) {
-  const cardElement = createCard(cardData); // Create the card element
-  cardGeneration.addItem(cardElement); // Use the global Section instance to add the new card
-}
-
+// Add cards to the page
 const cardGeneration = new Section(
   {
     items: constants.initialCards,
     renderer: (item) => {
-      const cardElement = createCard(item); // Create the card element using the createCard function
-      cardGeneration.addItem(cardElement); // Add the card element to the section
+      const cardElement = createCard(item);
+      cardGeneration.addItem(cardElement);
     },
   },
-  constants.cardsList // Passing the DOM element directly
+  constants.cardsList // passing the already selected DOM element
 );
 
 // Render initial items
 cardGeneration.renderItems();
+
+// function createCard(cardData) {
+//   const card = new Card(cardData, ".card-template", handleCardImageClick);
+//   return card.getView(); // Returns the card element
+// }
+
+// function renderCard(cardData) {
+//   const cardElement = createCard(cardData); // Create the card element
+//   cardGeneration.addItem(cardElement); // Use the global Section instance to add the new card
+// }
+
+// const cardGeneration = new Section(
+//   {
+//     items: constants.initialCards,
+//     renderer: (item) => {
+//       const cardElement = createCard(item); // Create the card element using the createCard function
+//       cardGeneration.addItem(cardElement); // Add the card element to the section
+//     },
+//   },
+//   // constants.cardsList
+//   document.querySelector(".cards__list")
+// );
+
+// // Render initial items
+// cardGeneration.renderItems();
+
+/******************
+ * OLD GENERATION *
+ ******************/
 
 // // Render new card
 // function renderCard(cardData, wrapper) {
