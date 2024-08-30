@@ -50,13 +50,25 @@ profilePopup.setEventListeners();
 const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    createCard(data);
+    cardGeneration.addItem(createCard(data)); //use the add item method
+
     // constants.cardsList
     closeCardModal();
   },
 });
 
 cardPopup.setEventListeners();
+
+// const cardPopup = new PopupWithForm({
+//   popupSelector: "#add-card-modal",
+//   handleFormSubmit: (data) => {
+//     createCard(data);
+//     // constants.cardsList
+//     closeCardModal();
+//   },
+// });
+
+// cardPopup.setEventListeners();
 
 /**********************
  * EDIT PROFILE MODAL *
