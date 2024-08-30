@@ -3,6 +3,7 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleOverlayClose = this._handleOverlayClose.bind(this);
+    this._popupCloseButton = this._popup.querySelector(".modal__close-button");
   }
 
   _handleEscClose = (e) => {
@@ -32,6 +33,7 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.addEventListener("click", this._handleOverlayClose);
+    // this._popupCloseButton.addEventListener("click", this.close.bind(this));
     // the other event listener (_handleEscClose) is added in the open method
   }
 

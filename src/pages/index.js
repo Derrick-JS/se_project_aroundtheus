@@ -6,11 +6,11 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 
 import * as constants from "../utils/constants.js";
 
 import "../pages/index.css";
-import UserInfo from "../components/UserInfo.js";
 
 /*************
  * USERINFO; *

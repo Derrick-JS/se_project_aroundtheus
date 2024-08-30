@@ -45,7 +45,6 @@ export default class Card {
   }
 
   // todo: rename
-  // and heres what .getview does
   getView() {
     // get card template
     this._cardElement = this._getTemplate();
