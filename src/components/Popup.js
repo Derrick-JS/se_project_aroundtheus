@@ -2,7 +2,6 @@ export default class Popup {
   constructor({ popupSelector }) {
     this._popup = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
-    // this._handleOverlayClose = this._handleOverlayClose.bind(this);
     this._popupCloseButton = this._popup.querySelector(".modal__close-button");
   }
 
@@ -25,7 +24,6 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popup.addEventListener("click", this._handleOverlayClose);
     this._popup.addEventListener("mousedown", (evt) => {
       if (
         evt.target.classList.contains("modal") ||
@@ -36,9 +34,5 @@ export default class Popup {
       }
     });
     // the other event listener (_handleEscClose) is added in the open method
-  }
-
-  removeEventListeners() {
-    document.removeEventListener("keydown", this._handleEscClose);
   }
 }

@@ -55,13 +55,9 @@ constants.profileEditButton.addEventListener("click", function () {
   constants.profileTitleInput.value = name;
   constants.profileDescriptionInput.value = job;
 
-  profilePopup.open(constants.editProfileModal);
+  profilePopup.open();
   profileFormValidator.toggleButtonState();
 });
-
-constants.profileModalCloseButton.addEventListener("click", () =>
-  profilePopup.close()
-);
 
 /*******************
  * ADD CARD MODAL  *
@@ -69,7 +65,7 @@ constants.profileModalCloseButton.addEventListener("click", () =>
  *******************/
 
 constants.addNewCardButton.addEventListener("click", function () {
-  cardPopup.open(constants.addCardModal);
+  cardPopup.open();
   cardFormValidator.toggleButtonState();
 });
 constants.addCardModalCloseButton.addEventListener("click", () =>
