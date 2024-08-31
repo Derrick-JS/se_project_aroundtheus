@@ -29,6 +29,7 @@ const profilePopup = new PopupWithForm({
   popupSelector: "#profile__edit-modal",
   handleFormSubmit: (data) => {
     userProfileInfo.setUserInfo(data);
+    profilePopup.close();
   },
 });
 
@@ -38,6 +39,7 @@ const cardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
     cardGeneration.addItem(createCard(data));
+    cardPopup.close();
   },
 });
 
