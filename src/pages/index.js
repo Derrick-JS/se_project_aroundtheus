@@ -84,9 +84,6 @@ imagePopup.setEventListeners();
  *  POPUP WITH MODAL   *
  ***********************/
 
-constants.imagePreviewCloseButton.addEventListener("click", () =>
-  closeImageModal()
-);
 function handleCardImageClick(data) {
   imagePopup.open(data);
 }
