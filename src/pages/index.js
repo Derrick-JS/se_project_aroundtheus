@@ -68,9 +68,6 @@ constants.addNewCardButton.addEventListener("click", function () {
   cardPopup.open();
   cardFormValidator.toggleButtonState();
 });
-constants.addCardModalCloseButton.addEventListener("click", () =>
-  cardPopup.close()
-);
 
 /*******************
  * POPUPWITHIMAGE; *
